@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqink Holdings - Professional Equipment Solutions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #d4af37;
+            --background-color: #f8f9fa;
+            --foreground-color: #1f2937;
+            --border-color: #e5e7eb;
+            --muted-color: #6b7280;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--foreground-color);
+            background-color: var(--background-color);
+        }
+
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.8rem);
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--foreground-color);
+            border: none;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline-light {
+            border: 2px solid white;
+            color: white;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 20;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--accent-color);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--muted-color);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .product-card {
+            position: relative;
+            height: 400px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .product-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+
+        .product-card:hover .product-card-bg {
+            transform: scale(1.1);
+        }
+
+        .product-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s;
+        }
+
+        .product-card:hover .product-card-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .product-card-content {
+            position: relative;
+            z-index: 10;
+            padding: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .product-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .product-card-list {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .product-card-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .product-card-list li span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .mining-card {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .mining-title {
+            color: var(--accent-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .mining-subtitle {
+            color: #e5e7eb;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            transition: background-color 0.3s;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-title {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-description {
+            color: #f3f4f6;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .partner-card {
+            height: 80px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: box-shadow 0.3s;
+            padding: 10px;
+        }
+
+        .partner-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-logo {
+            max-width: 120px;
+            max-height: 50px;
+            object-fit: contain;
+        }
+
+        .client-section {
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(to right, rgba(30, 58, 138, 0.1), transparent, rgba(30, 58, 138, 0.1));
+            border-radius: 12px;
+            border: 1px solid rgba(30, 58, 138, 0.2);
+        }
+
+        .conveyor-belt {
+            display: flex;
+            gap: 30px;
+            padding: 20px;
+            animation: scroll-left 40s linear infinite;
+        }
+
+        .conveyor-belt:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .client-item {
+            flex-shrink: 0;
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .client-logo-container {
+            width: 100%;
+            height: 64px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-logo {
+            max-width: 100px;
+            max-height: 40px;
+            object-fit: contain;
+        }
+
+        .client-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .cta-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(248, 249, 250, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .brand-text {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--foreground-color);
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--foreground-color);
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+            }
+            
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .mining-card {
+                padding: 30px 20px;
+            }
+            
+            .client-item {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="brand-logo">Blaqink</div>
+                <span class="brand-text d-none d-sm-inline">Blaqink Holdings</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-primary btn-sm">Quote</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Carousel Images -->
+        <div class="carousel-slide active">
+            <img src="https://imgur.com/Ze378rb.jpg" alt="Industrial equipment slide 1">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+            <img src="https://imgur.com/aqT5nMK.jpg" alt="Industrial equipment slide 2">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="carousel-slide">
+            <img src="https://imgur.com/OBuM8IN.jpg" alt="Industrial equipment slide 3">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="hero-content d-flex align-items-center justify-content-center h-100">
+            <div>
+                <h1 class="hero-title">Blaqink Holdings</h1>
+                <p class="hero-subtitle">We aim to be
+the leading
+supplier of mining
+equipment in
+South Africa and
+beyond.</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <a href="#" class="btn btn-accent d-inline-flex align-items-center gap-2">
+                        Browse Products <i class="bi bi-arrow-right"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <div class="carousel-indicator active" data-slide="0"></div>
+            <div class="carousel-indicator" data-slide="1"></div>
+            <div class="carousel-indicator" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Why Choose Blaqink Holdings?</h2>
+                <p class="section-subtitle">
+                    Blaqink Holdings is a dynamic, ambitious multi-disciplinary entity. The company is a
+                    Level 1 BBBEE that has robust relationships with some of the best industry experts with an
+                    aim of attracting more and best talent in all its spheres of operation in its pursuit of excellence.
+                    Blaqink Holdings is the exclusive sales partner for Bundor Valves and AirTOP Pneumatic
+                    equipment in South Africa. We are official distributors of Festo Pneumatic and Cromwell
+                    Tools and many other top component brands in the industry.
+                </p>
+            </div>
+
+            <!-- Product Services Section -->
+            <div class="border-top pt-5 mt-5">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Industrial Services & Supplies</h2>
+                    <p class="section-subtitle">
+                        Specialized components and tools for every operational requirement.
+                    </p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="product-card">
+                            <img src="https://imgur.com/g4v2CPD.png" alt="Valves & Flow Control" class="product-card-bg">
+                            <div class="product-card-overlay"></div>
+                            <div class="product-card-content">
+                                <h3 class="product-card-title">Valves & Flow Control</h3>
+                                <ul class="product-card-list">
+                                    <li><span>✓</span> Knife Gates</li>
+                                    <li><span>✓</span> RSV Gate Valves</li>
+                                    <li><span>✓</span> Butterfly Valves</li>
+                                    <li><span>✓</span> Actuated Butterfly Valves</li>
+                                    <li><span>✓</span> Globe Valves</li>
+                                    <li><span>✓</span> Y-Strainers</li>
+                                    <li><span>✓</span> Non-Return Valves</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="product-card">
+                            <img src="https://imgur.com/jOBNMW7.png" alt="Pneumatic & Hydraulic" class="product-card-bg">
+                            <div class="product-card-overlay"></div>
+                            <div class="product-card-content">
+                                <h3 class="product-card-title">Pneumatic & Hydraulic</h3>
+                                <ul class="product-card-list">
+                                    <li><span>✓</span> Pneumatic Systems</li>
+                                    <li><span>✓</span> Hydraulic Systems</li>
+                                    <li><span>✓</span> Cylinders</li>
+                                    <li><span>✓</span> FLRs</li>
+                                    <li><span>✓</span> Fittings</li>
+                                    <li><span>✓</span> Tubings</li>
+                                    <li><span>✓</span> Bearings</li>
+                                    <li><span>✓</span> Seals</li>
+                                    <li><span>✓</span> Lubrication</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="product-card">
+                            <img src="https://imgur.com/oQ94R9N.png" alt="Power Transmission" class="product-card-bg">
+                            <div class="product-card-overlay"></div>
+                            <div class="product-card-content">
+                                <h3 class="product-card-title">Power Transmission</h3>
+                                <ul class="product-card-list">
+                                    <li><span>✓</span> Power Transmission</li>
+                                    <li><span>✓</span> Hubs</li>
+                                    <li><span>✓</span> Sprockets</li>
+                                    <li><span>✓</span> Chains</li>
+                                    <li><span>✓</span> Belting</li>
+                                    <li><span>✓</span> Couplings</li>
+                                    <li><span>✓</span> Sleeves</li>
+                                    <li><span>✓</span> Taper locks</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="product-card">
+                            <img src="https://imgur.com/giy9qAB.png" alt="Tools & Consumables" class="product-card-bg">
+                            <div class="product-card-overlay"></div>
+                            <div class="product-card-content">
+                                <h3 class="product-card-title">Tools & Consumables</h3>
+                                <ul class="product-card-list">
+                                    <li><span>✓</span> Hand Tools</li>
+                                    <li><span>✓</span> Cutting Tools</li>
+                                    <li><span>✓</span> Power Tools</li>
+                                    <li><span>✓</span> Abrasives</li>
+                                    <li><span>✓</span> Measuring & Test Equipment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="product-card">
+                            <img src="https://imgur.com/ZFXSMUR.png" alt="Safety & Protection" class="product-card-bg">
+                            <div class="product-card-overlay"></div>
+                            <div class="product-card-content">
+                                <h3 class="product-card-title">Safety & Protection</h3>
+                                <ul class="product-card-list">
+                                    <li><span>✓</span> Personal Protection & Clothing</li>
+                                    <li><span>✓</span> Heavy-Duty PPE</li>
+                                    <li><span>✓</span> Protective Gear</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="product-card">
+                            <img src="https://imgur.com/fQ956aF.jpg" alt="Electrical & Industrial" class="product-card-bg">
+                            <div class="product-card-overlay"></div>
+                            <div class="product-card-content">
+                                <h3 class="product-card-title">Electrical & Industrial</h3>
+                                <ul class="product-card-list">
+                                    <li><span>✓</span> Electrical Supplies</li>
+                                    <li><span>✓</span> Instrumentation</li>
+                                    <li><span>✓</span> Sensors</li>
+                                    <li><span>✓</span> Switches</li>
+                                    <li><span>✓</span> Seals</li>
+                                    <li><span>✓</span> Lubricants & Chemicals</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mining Solutions -->
+            <div class="mining-card">
+                <h3 class="mining-title">Mining Solutions</h3>
+                <p class="mining-subtitle">Complete Industrial Support for Mining Operations</p>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card">
+                            <h4 class="service-title">Industrial Cleaning & Maintenance</h4>
+                            <p class="service-description">
+                                Industrial-grade degreasers, cleaners, and maintenance tools specifically suited for mining equipment to maintain machinery and reduce downtime.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card">
+                            <h4 class="service-title">Tools & Consumables</h4>
+                            <p class="service-description">
+                                Wide range of hand tools, power tool accessories, and consumables made for heavy-duty, high-impact applications.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card">
+                            <h4 class="service-title">Material Handling & Storage Solutions</h4>
+                            <p class="service-description">
+                                Rugged trolleys, storage bins, shelving systems, and lifting equipment built for industrial use and site organization.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card">
+                            <h4 class="service-title">Custom Supply Solutions</h4>
+                            <p class="service-description">
+                                Tailored Blaqink Holdings products that meet specific operational needs and safety standards for every mining operation.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="service-card">
+                            <h4 class="service-title">Heavy-Duty PPE & Protective Clothing</h4>
+                            <p class="service-description">
+                                Flame-resistant overalls, helmets, gloves, eye protection, and respirators for workers in high-risk areas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Trusted Partners</h2>
+                <p class="section-subtitle">
+                    We collaborate with leading suppliers to bring you premium industrial equipment
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <div class="partner-card">
+                        <img src="/techcore-logo.jpg" alt="TechCore Solutions" class="partner-logo">
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <div class="partner-card">
+                        <img src="/industrial-dynamics-logo.jpg" alt="Industrial Dynamics" class="partner-logo">
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <div class="partner-card">
+                        <img src="/equipmax-logo.jpg" alt="EquipMax Industries" class="partner-logo">
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <div class="partner-card">
+                        <img src="/prime-manufacturing-logo.jpg" alt="Prime Manufacturing" class="partner-logo">
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <div class="partner-card">
+                        <img src="/global-machinery-logo.jpg" alt="Global Machinery" class="partner-logo">
+                    </div>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-2 mb-4">
+                    <div class="partner-card">
+                        <img src="/advanced-systems-logo.jpg" alt="Advanced Systems Ltd" class="partner-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Valued Clients</h2>
+                <p class="section-subtitle">
+                    Trusted by leading companies across industries worldwide
+                </p>
+            </div>
+
+            <div class="client-section">
+                <div class="conveyor-belt">
+                    <!-- Duplicate clients for seamless loop -->
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/mining-corp-logo.jpg" alt="Mining Corp Australia" class="client-logo">
+                        </div>
+                        <p class="client-name">Mining Corp Australia</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/healthcare-logo.jpg" alt="HealthCare Solutions" class="client-logo">
+                        </div>
+                        <p class="client-name">HealthCare Solutions</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/global-foods-logo.jpg" alt="Global Foods Ltd" class="client-logo">
+                        </div>
+                        <p class="client-name">Global Foods Ltd</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/logistics-express-logo.jpg" alt="Logistics Express" class="client-logo">
+                        </div>
+                        <p class="client-name">Logistics Express</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/industrial-ops-logo.jpg" alt="Industrial Ops" class="client-logo">
+                        </div>
+                        <p class="client-name">Industrial Ops</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/energy-systems-logo.jpg" alt="Energy Systems" class="client-logo">
+                        </div>
+                        <p class="client-name">Energy Systems</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/precision-engineering-logo.jpg" alt="Precision Engineering" class="client-logo">
+                        </div>
+                        <p class="client-name">Precision Engineering</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/nextgen-industries-logo.jpg" alt="NextGen Industries" class="client-logo">
+                        </div>
+                        <p class="client-name">NextGen Industries</p>
+                    </div>
+                    
+                    <!-- Duplicate for seamless loop -->
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/mining-corp-logo.jpg" alt="Mining Corp Australia" class="client-logo">
+                        </div>
+                        <p class="client-name">Mining Corp Australia</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/healthcare-logo.jpg" alt="HealthCare Solutions" class="client-logo">
+                        </div>
+                        <p class="client-name">HealthCare Solutions</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/global-foods-logo.jpg" alt="Global Foods Ltd" class="client-logo">
+                        </div>
+                        <p class="client-name">Global Foods Ltd</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/logistics-express-logo.jpg" alt="Logistics Express" class="client-logo">
+                        </div>
+                        <p class="client-name">Logistics Express</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/industrial-ops-logo.jpg" alt="Industrial Ops" class="client-logo">
+                        </div>
+                        <p class="client-name">Industrial Ops</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/energy-systems-logo.jpg" alt="Energy Systems" class="client-logo">
+                        </div>
+                        <p class="client-name">Energy Systems</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/precision-engineering-logo.jpg" alt="Precision Engineering" class="client-logo">
+                        </div>
+                        <p class="client-name">Precision Engineering</p>
+                    </div>
+                    
+                    <div class="client-item">
+                        <div class="client-logo-container">
+                            <img src="/nextgen-industries-logo.jpg" alt="NextGen Industries" class="client-logo">
+                        </div>
+                        <p class="client-name">NextGen Industries</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-muted mt-4">Hover to pause the animation</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Ready to upgrade your operations?</h2>
+            <p class="cta-subtitle">
+                Contact our team today for a personalized quote and expert consultation
+            </p>
+            <a href="#" class="btn btn-accent d-inline-flex align-items-center gap-2">
+                Get in Touch <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h3 class="footer-title">Blaqink Holdings</h3>
+                    <p class="text-light">
+                        Premium equipment solutions for industrial sectors worldwide.
+                    </p>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h4 class="footer-title">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Healthcare Equipment</a></li>
+                        <li><a href="#">Mining Solutions</a></li>
+                        <li><a href="#">Food & Beverage</a></li>
+                        <li><a href="#">Logistics Systems</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h4 class="footer-title">Contact</h4>
+                    <p class="text-light">Email: sales@industrialpro.com</p>
+                    <p class="text-light">Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <p>&copy; 2025 Blaqink Holdings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all indicators
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            
+            // Show the selected slide
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+
+        // Auto-advance slides
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % totalSlides;
+            showSlide(nextSlide);
+        }, 5000);
+
+        // Add click event to indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Navbar toggle for mobile
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarNav = document.getElementById('navbarNav');
+        
+        navbarToggler.addEventListener('click', () => {
+            navbarNav.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

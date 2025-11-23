@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Blaqink Holdings</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #d4af37;
+            --background-color: #f8f9fa;
+            --foreground-color: #1f2937;
+            --border-color: #e5e7eb;
+            --muted-color: #6b7280;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--foreground-color);
+            background-color: var(--background-color);
+        }
+
+        .products-container {
+            min-height: 100vh;
+            padding: 100px 0 60px;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--muted-color);
+            font-size: 1.2rem;
+            max-width: 800px;
+        }
+
+        .filter-section {
+            margin-bottom: 4rem;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+            background-color: transparent;
+            color: var(--foreground-color);
+            margin: 0 8px 8px 0;
+        }
+
+        .category-btn.active {
+            background-color: var(--foreground-color);
+            color: var(--background-color);
+            border-color: var(--foreground-color);
+        }
+
+        .category-btn:hover:not(.active) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .product-card {
+            margin-bottom: 4rem;
+        }
+
+        .product-image-container {
+            height: 500px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            background-color: rgba(0, 0, 0, 0.03);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-category-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            color: var(--foreground-color);
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .product-card:hover .product-name {
+            color: var(--primary-color);
+        }
+
+        .product-description {
+            color: var(--muted-color);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 2rem;
+            text-align: center;
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .empty-state-icon {
+            padding: 1rem;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-state-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state-text {
+            color: var(--muted-color);
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+        }
+
+        .clear-filter-btn {
+            padding: 10px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .clear-filter-btn:hover {
+            background-color: #1e40af;
+        }
+
+        @media (max-width: 768px) {
+            .products-container {
+                padding: 80px 0 40px;
+            }
+            
+            .product-image-container {
+                height: 350px;
+            }
+            
+            .product-name {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgba(248, 249, 250, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #e5e7eb;">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="rounded d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; background-color: var(--primary-color);">
+                    <span class="text-white fw-bold" style="font-size: 14px;">IP</span>
+                </div>
+                <span class="fw-bold d-none d-sm-inline">Blaqink Holdings</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-primary btn-sm">Quote</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Section -->
+    <section class="products-container">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="mb-5">
+                <h1 class="page-title">Our Products & Services</h1>
+                <p class="page-subtitle">
+                    Industrial grade equipment and solutions.
+                </p>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-funnel-fill me-2" style="color: var(--primary-color);"></i>
+                    <h2 class="filter-title">Categories</h2>
+                </div>
+                
+                <div class="d-flex flex-wrap">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="Valves">Valves</button>
+                    <button class="category-btn" data-category="Pneumatics & Hydraulics">Pneumatics & Hydraulics</button>
+                    <button class="category-btn" data-category="Bearings & Power Transmission">Bearings & Power Transmission</button>
+                    <button class="category-btn" data-category="Tools">Tools</button>
+                    <button class="category-btn" data-category="Safety & PPE">Safety & PPE</button>
+                    <button class="category-btn" data-category="Industrial Consumables">Industrial Consumables</button>
+                    <button class="category-btn" data-category="Electrical & Instrumentation">Electrical & Instrumentation</button>
+                    <button class="category-btn" data-category="Measuring & Testing">Measuring & Testing</button>
+                    <button class="category-btn" data-category="Fittings & Tubing">Fittings & Tubing</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="row">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+
+            <!-- Empty State (Initially Hidden) -->
+            <div id="empty-state" class="empty-state d-none">
+                <div class="empty-state-icon">
+                    <i class="bi bi-info-circle" style="font-size: 2rem; color: var(--muted-color);"></i>
+                </div>
+                <h3 class="empty-state-title">No products found</h3>
+                <p class="empty-state-text">
+                    We couldn't find any products in the <span id="selected-category-text" class="fw-medium"></span> category.
+                </p>
+                <button id="clear-filter-btn" class="clear-filter-btn">
+                    Clear Filters
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-3">Blaqink Holdings</h5>
+                    <p class="text-light">
+                        Premium equipment solutions for industrial sectors worldwide.
+                    </p>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-3">Products</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Healthcare Equipment</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Mining Solutions</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Food & Beverage</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Logistics Systems</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-3">Company</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-3">Contact</h5>
+                    <p class="text-light">Email: sales@industrialpro.com</p>
+                    <p class="text-light">Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            
+            <div class="border-top border-light pt-4 mt-4 text-center">
+                <p class="text-light mb-0">&copy; 2025 Blaqink Holdings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Products Data
+        const PRODUCTS = [
+            // 1. Valves
+            {
+                id: "valve-1",
+                name: "Knife Gate Valves",
+                category: "Valves",
+                type: "Knife Gate Valves",
+                image: "https://imgur.com/NuZRxrw.png",
+                description: "Manually or actuated operated knife gate valve designed for on/off and isolation in systems handling abrasive slurries, wastewater, pulp & paper, mining, cement, and chemical processing.",
+                specs: ["Zero leakage shutoff", "Stainless steel or ductile iron body", "EPDM or PTFE seat options"],
+            },
+            {
+                id: "valve-2",
+                name: "RSV Gate Valves",
+                category: "Valves",
+                type: "RSV Gate Valves",
+                image: "https://imgur.com/ga35cko.png",
+                description: "Robust rising stem gate valve used for clean water, wastewater, fire protection systems, irrigation, and general industrial flow shutoff applications",
+                specs: ["Ductile iron body", "Wedge-type sealing", "Corrosion-resistant stem"],
+            },
+            {
+                id: "valve-3",
+                name: "Butterfly Valves",
+                category: "Valves",
+                type: "Butterfly Valves",
+                image: "https://imgur.com/niXuXNP.png",
+                description: "Quarter-turn butterfly valve for regulating or isolating flow in pipelines carrying water, air, chemicals, or light slurries. Suitable for HVAC, water treatment, and industrial systems.",
+                specs: ["Wafer or lug type", "EPDM, NBR, or PTFE seat", "Stainless steel disc"],
+            },
+            {
+                id: "valve-4",
+                name: "Actuated Butterfly Valves",
+                category: "Valves",
+                type: "Actuated Butterfly Valves",
+                image: "https://imgur.com/1PBbMhT.png",
+                description: "Automated butterfly valve for remote flow control, integrating pneumatic or electric actuators for process automation in industrial and municipal systems.",
+                specs: ["Pneumatic or electric actuator", "Position indicator", "EPDM/PTFE seat"],
+            },
+            {
+                id: "valve-5",
+                name: "Globe Valves",
+                category: "Valves",
+                type: "Globe Valves",
+                image: "https://imgur.com/I9tr9TY.png",
+                description: "Linear motion control valve for throttling and regulating flow in pipelines handling steam, air, gas, oil, and water in industrial applications.",
+                specs: ["Cast steel or stainless steel body", "Rising stem design", "Metal-to-metal seating"],
+            },
+            {
+                id: "valve-6",
+                name: "Non-Return Valves",
+                category: "Valves",
+                type: "Non-Return Valves",
+                image: "https://imgur.com/FoWILpx.png",
+                description: "Automatic check valve that prevents reverse flow in water, steam, and chemical pipelines, protecting pumps and ensuring system stability.",
+                specs: ["Swing or lift type", "Stainless steel or cast iron", "Buna-N or EPDM seatMetal-to-metal seating"],
+            },
+            {
+                id: "valve-7",
+                name: "Y-Strainers",
+                category: "Valves",
+                type: "Y-Strainers",
+                image: "https://imgur.com/ZaLpbxc.png",
+                description: "Mechanical strainer for trapping debris, rust, and foreign particles to protect pumps, valves, meters, and regulators in industrial pipelines. ",
+                specs: ["Cast steel or stainless steel body", "Blow-off plug", "Pressure rating: PN16"],
+            },
+            {
+                id: "valve-8",
+                name: "Pneumatic Valves",
+                category: "Valves",
+                type: "Y-Strainers",
+                image: "https://imgur.com/I9XtIpA.png",
+                description: "Mechanical strainer for trapping debris, rust, and foreign particles to protect pumps, valves, meters, and regulators in industrial pipelines. ",
+                specs: ["Cast steel or stainless steel body", "Blow-off plug", "Pressure rating: PN16"],
+            },
+
+            // 2. Pneumatics & Hydraulics
+            {
+                id: "pneu-1",
+                name: "ISO 15552 Standard Cylinder",
+                category: "Pneumatics & Hydraulics",
+                type: "Pneumatic Equipment",
+                image: "https://imgur.com/OC0tNfD.png",
+                description: "Standardized linear actuator used to push, pull, or lift objects in automated machinery. Features a lightweight aluminum profile and magnetic piston.",
+                specs: ["Bore: 32-125mm", "Max 10 bar", "Adjustable Cushioning"],
+            },
+            {
+                id: "pneu-2",
+                name: "Modular FRL Unit",
+                category: "Pneumatics & Hydraulics",
+                type: "Pneumatic Equipment",
+                image: "https://imgur.com/U36E0in.png",
+                description: "Air preparation system that cleans compressed air, controls pressure, and adds lubrication. Essential for protecting downstream pneumatic tools.",
+                specs: ["5μm Filtration", "0-12 bar Range", "Auto-drain"],
+            },
+            {
+                id: "hyd-1",
+                name: "Heavy-Duty Tie Rod Cylinder",
+                category: "Pneumatics & Hydraulics",
+                type: "Hydraulic Equipment",
+                image: "https://imgur.com/8d87vXW.png",
+                description: "Rugged hydraulic cylinder designed for high-pressure applications requiring immense force. Built with high-tensile steel to withstand shock loads.",
+                specs: ["3000 PSI Continuous", "Chrome-plated Rod", "Viton Seals"],
+            },
+            {
+                id: "hyd-2",
+                name: "Hydraulic Power Unit (HPU)",
+                category: "Pneumatics & Hydraulics",
+                type: "Hydraulic Equipment",
+                image: "https://imgur.com/TlGbXKU.png",
+                description: "Self-contained power system consisting of a motor, reservoir, and pump that generates the hydraulic flow required for industrial lifts.",
+                specs: ["20-100L Tank", "Max 250 bar", "High Efficiency Motor"],
+            },
+
+            // 3. Bearings & Power Transmission
+            {
+                id: "bear-1",
+                name: "Deep Groove Ball Bearing",
+                category: "Bearings & Power Transmission",
+                type: "Bearings",
+                image: "https://imgur.com/NKvrRHE.png",
+                description: "The most common, versatile rolling bearing, suitable for moderate radial and axial loads at high rotational speeds. Simple design and low maintenance. Industries Used Electric Motors, Gearboxes, Home Appliances ",
+                specs: ["Single row", "High Load Capacity", "Sealed (2RS) or shielded (ZZ) options."],
+            },
+            {
+                id: "bear-2",
+                name: "Tapered Roller Bearing",
+                category: "Bearings & Power Transmission",
+                type: "Bearings",
+                image: "https://imgur.com/1rVJuMv.png",
+                description: "Designed to manage combined heavy radial and axial loads simultaneously. Components (cone and cup) are separable for easy mounting. Industries Used Automotive Wheel Hubs, Heavy Truck Axles, Industrial Gear Drives.",
+                specs: ["Self-aligning", "High Load Capacity", "Steel Cage"],
+            },
+            {
+                id: "pt-1",
+                name: "V-Belt and Pulley System",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/Kbj53hz.png",
+                description: "Transmits power efficiently over moderate distances using a trapezoidal belt that wedges into a pulley groove. Provides essential shock absorption. Industries Used HVAC Systems, Agricultural Machinery, Industrial Conveyors.",
+                specs: ["Belt profiles (A, B, C)", "Cast Iron or Aluminum Pulley", "Fixed speed ratio."],
+            },
+            {
+                id: "pt-2",
+                name: "Roller Chain and Sprocket",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/oUACOJW.jpg",
+                description: "Mechanism for transmitting high torque using a continuous loop of chain links that mesh with sprockets. Known for durability in harsh environments. Industries Used Motorcycle Drive Systems, Industrial Machinery, Agricultural Equipment.",
+                specs: ["ANSI Standard", "High Torque Capacity,", "Requires routine lubrication"],
+            },
+            {
+                id: "pt-3",
+                name: "Flexible Gear Coupling",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/SzYIB0t.jpg",
+                description: "Used to connect two rotating shafts that may be slightly misaligned. High torque capacity due to external and internal geared teeth. Industries Used Industrial Pumps, Compressors, Conveyor Systems.",
+                specs: ["ANSI Standard", "Carbon Steel", "High Tensile Strength"],
+            },
+            {
+                id: "pt-4",
+                name: "Hydraulic Rod Seal (U-Cup)",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/wt8ePkj.jpg",
+                description: "A dynamic seal used to prevent high-pressure fluid leakage from the cylinder rod end during extension and retraction. Shaped like a 'U' for active sealing. Industries Used Hydraulic Cylinders,Hydraulic Cylinders, Presses, Heavy Construction Equipment.",
+                specs: ["Polyurethane (PU) or NBR material", "Pressure resistance up to 400 bar ", "Excellent abrasion resistance."],
+            },
+            {
+                id: "pt-5",
+                name: "Rotary Shaft Lip Seal (Oil Seal)",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/5KrEXcl.jpg",
+                description: "Retains lubricant and excludes contaminants from a rotary shaft system. Features a metal case and a flexible, spring-loaded elastomer lip. Industries UsedGearboxes, Electric Motors, Automotive Engines, Pumps.",
+                specs: ["NBR or FKM (Viton) material", "Designed for peripheral speeds", "Low rotational friction."],
+            },
+            {
+                id: "pt-6",
+                name: "Industrial O-Ring Set",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/twdzh55.jpg",
+                description: "A simple, versatile, and inexpensive seal shaped like a torus (doughnut). Used primarily for static sealing to block a path for fluid or gas leakage. Industries Used Flanges, Pipe Connections, Pneumatic Fittings, Chemical Processing.",
+                specs: ["High chemical resistance,", "Wide temperature range.", "Available in Viton"],
+            },
+
+            // 4. Tools
+            {
+                id: "tool-1",
+                name: "Pro-Series Cordless Drill",
+                category: "Tools",
+                type: "Power Tools",
+                image: "https://imgur.com/UHZOr8s.jpg",
+                description: "Brushless motor cordless drill offering superior torque and battery life. Ergonomic grip for reduced operator fatigue. Industries Used Construction, Maintenance, DIY Projects.",
+                specs: ["18V Lithium-Ion", "Brushless Motor", "2-Speed Gearbox"],
+            },
+            {
+                id: "tool-2",
+                name: "Precision CNC End Mill",
+                category: "Tools",
+                type: "Cutting Tools",
+                image: "https://imgur.com/6815CK3.jpg",
+                description: "Solid carbide end mill designed for high-speed machining of steel and aluminum. TiAlN coating for heat resistance. Industries Used Aerospace, Automotive, Mold Making.",
+                specs: ["Solid Carbide", "4-Flute", "TiAlN Coated"],
+            },
+            {
+                id: "tool-3",
+                name: "Heavy-Duty Hydraulic Puller",
+                category: "Tools",
+                type: "Specialty Tools",
+                image: "https://imgur.com/7PBAMHZ.jpg",
+                description: "Essential tool for safely removing large, press-fit components like pulleys, gears, and flywheels with minimal effort and high pulling force. Industries Used Automotive Repair, Industrial Maintenance, Mechanical Workshops.",
+                specs: ["10-Ton Capacity", "3-Jaw design", "Drop-forged steel"],
+            },
+            {
+                id: "tool-4",
+                name: "Industrial Pipe Wrench",
+                category: "Tools",
+                type: "Hand Tools",
+                image: "https://imgur.com/az3Nov5.png",
+                description: "A robust, adjustable wrench with hardened jaws for gripping and turning soft iron pipes and fittings in plumbing and industrial maintenance. Industries Used Plumbing, HVAC, Industrial Maintenance.",
+                specs: ["Straight handle", "36-inch length", "Drop-forged steel"],
+            },
+
+            // 5. Safety & PPE
+            {
+                id: "safe-1",
+                name: "High-Visibility Safety Vest",
+                category: "Safety & PPE",
+                type: "Protective Clothing",
+                image: "https://imgur.com/VqNpDr4.jpg",
+                description: "Class 2 reflective safety vest with multiple pockets. Lightweight mesh fabric ensures breathability during long shifts. Industries Used Construction, Roadwork, Warehouse Operations.",
+                specs: ["ANSI/ISEA 107", "360° Reflective", "Zipper Closure"],
+            },
+            {
+                id: "safe-2",
+                name: "Impact Safety Helmet",
+                category: "Safety & PPE",
+                type: "Head Protection",
+                image: "https://imgur.com/Yu3y0yo.png",
+                description: "Lightweight, vented safety helmet with a six-point ratchet suspension system for superior comfort and protection against falling objects and electrical hazards. Industries Used Construction, Manufacturing, Electrical Work.",
+                specs: ["ANSI Z89.1 Type I, Class E", "6-point Ratchet Suspension", "Vented Shell"],
+            },
+            {
+                id: "safe-3",
+                name: "Chemical Resistant Gloves",
+                category: "Safety & PPE",
+                type: "Hand Protection",
+                image: "https://imgur.com/Q752kWM.png",
+                description: "Heavy-duty nitrile gloves designed for optimal grip and protection when handling solvents, oils, and various hazardous chemicals in industrial environments. Industries Used Chemical Processing, Laboratory Work, Manufacturing.",
+                specs: ["15 mil Nitrile", "Flocked Lining", "FDA Compliant"],
+            },
+            {
+                id: "safe-4",
+                name: "Reusable Ear Plugs",
+                category: "Safety & PPE",
+                type: "Hearing Protection",
+                image: "https://imgur.com/GT8dOra.png",
+                description: "High-attenuation reusable earplugs made of soft silicone material, offering comfortable, long-term hearing protection in high-noise industrial settings. Industries Used Manufacturing, Construction, Aviation.",
+                specs: ["NRR 28 dB", "Washable Silicone", "Corded"],
+            },
+            {
+                id: "safe-5",
+                name: "Full-Face Respirator",
+                category: "Safety & PPE",
+                type: "Respiratory Protection",
+                image: "https://imgur.com/L83pR67.jpg",
+                description: "Professional-grade full-facepiece respirator providing wide-field vision and comprehensive protection against airborne particulates, gases, and vapors. Compatible with various cartridges. Industries Used Painting, Chemical Handling, Emergency Response.",
+                specs: ["NIOSH Approved", "Silicone Facepiece", "Wide Viewing Lens"],
+            },
+
+            // 6. Industrial Consumables
+            {
+                id: "cons-1",
+                name: "Heavy-Duty Grinding Wheel",
+                category: "Industrial Consumables",
+                type: "Abrasives",
+                image: "https://imgur.com/w2Ea2D2.png",
+                description: "Reinforced grinding wheel for aggressive metal removal. Optimized bond matrix ensures long wheel life and safety. Industries Used Metal Fabrication, Automotive Repair, Construction.",
+                specs: ["Aluminum Oxide", "Fiberglass Reinforced", "4500 RPM Max"],
+            },
+            {
+                id: "cons-2",
+                name: "Industrial Gear Oil",
+                category: "Industrial Consumables",
+                type: "Lubricants/Oils",
+                image: "https://imgur.com/JpkCJZJ.jpg",
+                description: "High-performance, extreme-pressure lubricant designed for heavy-duty enclosed gear drives and bearings operating under high stress and varying temperatures. Industries Used Manufacturing, Mining, Heavy Equipment.",
+                specs: ["ISO VG 220", "EP Additives", "Wide Temperature Stability"],
+            },
+            {
+                id: "cons-3",
+                name: "Degreaser/Cleaning Solvent",
+                category: "Industrial Consumables",
+                type: "Chemicals/Cleaners",
+                image: "https://imgur.com/UWkkUIx.png",
+                description: "Fast-evaporating, non-chlorinated solvent for quickly removing oil, grease, dirt, and flux residues from electrical and mechanical components without leaving a residue. industries Used Electronics Manufacturing, Automotive Maintenance, Industrial Cleaning.",
+                specs: ["Non-flammable", "Zero Residue", "VOC Compliant"],
+            },
+            {
+                id: "cons-4",
+                name: "E7018 Welding Electrodes",
+                category: "Industrial Consumables",
+                type: "Welding Supplies",
+                image: "https://imgur.com/IhUgz4Z.png",
+                description: "Low-hydrogen electrodes designed for structural welding of mild and low-alloy steels. Provides high deposition efficiency, excellent slag control, and superior weld metal quality. Structural Steel Fabrication, Shipbuilding, Pipeline Construction.",
+                specs: ["AWS E7018 Classification", "Low Hydrogen", "Tensile Strength 70,000 PSI"],
+            },
+
+            // 7. Electrical & Instrumentation
+            {
+                id: "elec-1",
+                name: "Digital Process Controller",
+                category: "Electrical & Instrumentation",
+                type: "Instrumentation Equipment",
+                image: "https://imgur.com/ePn11xR.png",
+                description: "Advanced PID controller for temperature and flow regulation. Features a bright LED display and universal input support.Industries Used Food & Beverage, Chemical Processing, HVAC Systems.",
+                specs: ["PID Control", "Universal Input", "IP65 Front Panel"],
+            },
+            {
+                id: "elec-2",
+                name: "Electromagnetic Flow Meter",
+                category: "Electrical & Instrumentation",
+                type: "Flow Measurement",
+                image: "https://imgur.com/qIWnwft.png",
+                description: "Non-contact, high-accuracy meter used to measure the volumetric flow rate of conductive liquids, slurries, and pastes in large pipelines. Industries Used Water Treatment, Chemical Processing, Food & Beverage.",
+                specs: ["High Accuracy (±0.5%)", "Liner Materials (PTFE/PFA)", "Bi-directional Measurement"],
+            },
+            {
+                id: "elec-3",
+                name: "Industrial Ethernet Switch",
+                category: "Electrical & Instrumentation",
+                type: "Communication Equipment",
+                image: "https://imgur.com/5XZtdVu.jpg",
+                description: "Rugged, managed network switch designed to provide reliable, high-speed data communication in harsh industrial environments with extreme temperatures and vibration. Industries Used Manufacturing Automation, Oil & Gas, Transportation Systems.",
+                specs: ["DIN Rail Mount", "IP30 Rated Housing", "Managed Layer 2"],
+            },
+            {
+                id: "elec-4",
+                name: "Submersible Pressure Transmitter",
+                category: "Electrical & Instrumentation",
+                type: "Level/Pressure Measurement",
+                image: "https://imgur.com/rPRSiVE.jpg",
+                description: "A sensor specifically designed to be submerged in a liquid (like a well or tank) to continuously measure the liquid level by sensing hydrostatic pressure. Industries Used Water & Wastewater Management, Environmental Monitoring, Blaqink Holdingscess Control.",
+                specs: ["Stainless Steel Housing", "Vented Cable", "4-20mA Output"],
+            },
+
+            // 8. Measuring & Testing
+            {
+                id: "meas-1",
+                name: "Laser Distance Meter",
+                category: "Measuring & Testing",
+                type: "Measuring Equipment",
+                image: "https://imgur.com/AhQP73z.jpg",
+                description: "Precision laser measure for quick and accurate distance readings up to 100m. Rugged housing with dust and splash protection. Industries Used Construction, Surveying, Interior Design.",
+                specs: ["±1.5mm Accuracy", "Bluetooth Connect", "IP54 Dust/Splash Protection"],
+            },
+            {
+                id: "meas-2",
+                name: "Industrial Digital Multimeter (DMM)",
+                category: "Measuring & Testing",
+                type: "Electrical Testing",
+                image: "https://imgur.com/IE7BwQ9.jpg",
+                description: "True-RMS meter used for diagnosing electrical faults and measuring voltage, current, and resistance in motors, controls, and power systems.",
+                specs: ["True-RMS AC/DC", "CAT III 1000V Safety Rating", "Temperature Measurement"],
+            },
+            {
+                id: "meas-3",
+                name: "Vibration Analyzer",
+                category: "Measuring & Testing",
+                type: "Condition Monitoring",
+                image: "https://imgur.com/LUN26GO.jpg",
+                description: "Diagnostic tool that measures and analyzes machinery vibration to detect early signs of bearing wear, misalignment, or imbalance in rotating equipment.",
+                specs: ["FFT Spectrum Analysis", "ISO 10816 Compliance", "Velocity/Acceleration Modes"],
+            },
+            {
+                id: "meas-4",
+                name: "Portable Pressure Calibrator",
+                category: "Measuring & Testing",
+                type: "Calibration Tools",
+                image: "https://imgur.com/Z0wy1uy.jpg",
+                description: "A high-accuracy device used to calibrate and verify the performance of pressure sensors, transmitters, gauges, and safety relief valves in process systems. Industries Used Water & Wastewater Management, Environmental Monitoring, Blaqink Holdingscess Control.",
+                specs: ["0.025% of Reading Accuracy", "Internal Pressure Pump", "HART Communication"],
+            },
+
+            // 9. Fittings & Tubing
+            {
+                id: "fit-1",
+                name: "Push-to-Connect Fittings",
+                category: "Fittings & Tubing",
+                type: "Pneumatic Fittings",
+                image: "https://imgur.com/aEUgjYN.jpg",
+                description: "Quick-release fittings used in pneumatic systems to connect nylon, polyurethane, or polyethylene tubing without tools. Ensures a secure, leak-free connection. Industries Used Factory Automation, Robotics, Automotive.",
+                specs: ["Brass/Polymer Body", "Max 150 PSI", "Tube sizes 4mm to 16mm"],
+            },
+            {
+                id: "fit-2",
+                name: "Stainless Steel Flanges (Weld Neck)",
+                category: "Fittings & Tubing",
+                type: "Pipe Connections",
+                image: "https://imgur.com/DfETe4Z.jpg",
+                description: "Used to connect pipes to valves, pumps, or other equipment. The long tapered hub allows for optimal strength and stress distribution through welding. Industries Used Oil & Gas, Chemical Processing, Power Generation.",
+                specs: ["ANSI B16.5 Standard", "316 Stainless Steel", "Pressure Class 150 to 2500"],
+            },
+            {
+                id: "fit-3",
+                name: "High-Pressure Hydraulic Hose",
+                category: "Fittings & Tubing",
+                type: "Tubing & Hose",
+                image: "https://imgur.com/Zd6LME1.jpg",
+                description: "Multi-layer reinforced hose designed to convey high-pressure hydraulic fluid in heavy machinery and presses, offering high resistance to abrasion and flexing. Industries Used Heavy Construction, Mining, Injection Molding.",
+                specs: ["SAE 100R2 Standard", "Synthetic Rubber", "Max 400 Bar Working Pressure"],
+            },
+            {
+                id: "fit-4",
+                name: "Threaded Nipple & Couplings (Black Iron)",
+                category: "Fittings & Tubing",
+                type: "Threaded Components",
+                image: "https://imgur.com/A6jiQJ8.jpg",
+                description: "Short piece of pipe (nipple) and connector (coupling) used to extend or join two pipe sections, typically for gas or low-pressure steam/water lines. Industries Used Plumbing, Fire Protection, Utilities.",
+                specs: ["ASTM A53/A106 Grade B Steel", "NPT Threaded Ends", "Schedule 40"],
+            },
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render all products initially
+            renderProducts(PRODUCTS);
+            
+            // Set up category filter buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Get selected category
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    // Filter products
+                    let filteredProducts;
+                    if (selectedCategory === 'all') {
+                        filteredProducts = PRODUCTS;
+                    } else {
+                        filteredProducts = PRODUCTS.filter(product => product.category === selectedCategory);
+                    }
+                    
+                    // Render filtered products
+                    renderProducts(filteredProducts);
+                    
+                    // Show/hide empty state
+                    const emptyState = document.getElementById('empty-state');
+                    if (filteredProducts.length === 0) {
+                        document.getElementById('selected-category-text').textContent = `"${selectedCategory}"`;
+                        emptyState.classList.remove('d-none');
+                    } else {
+                        emptyState.classList.add('d-none');
+                    }
+                });
+            });
+            
+            // Set up clear filter button
+            document.getElementById('clear-filter-btn').addEventListener('click', function() {
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-category') === 'all') {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                renderProducts(PRODUCTS);
+                document.getElementById('empty-state').classList.add('d-none');
+            });
+        });
+
+        // Function to render products
+        function renderProducts(products) {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'col-lg-6 product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <div class="product-category-tag">${product.category}</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">
+                            ${product.description}
+                            <span class="text-dark">Key features include ${product.specs.join(', ').toLowerCase()}.</span>
+                        </p>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+    </script>
+</body>
+</html>
