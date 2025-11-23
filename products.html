@@ -192,41 +192,37 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgba(248, 249, 250, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #e5e7eb;">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <div class="rounded d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; background-color: var(--primary-color);">
-                    <span class="text-white fw-bold" style="font-size: 14px;">IP</span>
-                </div>
-                <span class="fw-bold d-none d-sm-inline">Blaqink Holdings</span>
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item ms-2">
-                        <button class="btn btn-primary btn-sm">Quote</button>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="https://imgur.com/Owfo942.jpg" alt="Blaqink Holdings Logo" style="height: 100px;">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <button class="btn btn-primary btn-sm">Quote</button>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- Products Section -->
     <section class="products-container">
@@ -441,6 +437,22 @@
                 image: "https://imgur.com/TlGbXKU.png",
                 description: "Self-contained power system consisting of a motor, reservoir, and pump that generates the hydraulic flow required for industrial lifts.",
                 specs: ["20-100L Tank", "Max 250 bar", "High Efficiency Motor"],
+            }, {
+                id: "hyd-3",
+                name: "Fuel Filter Regulator",
+                category: "Pneumatics & Hydraulics",
+                type: "Hydraulic Equipment",
+                image: "https://imgur.com/wAEUUUs.jpg",
+                description: "Essential component of an FRL (Filter-Regulator-Lubricator) unit, designed to remove solid particulates, condensate, and liquid oil from a compressed air supply, protecting downstream equipment from damage and ensuring optimal tool performance.",
+                specs: ["Port Size (Inlet/Outlet Thread)", "Filtration Rating (Microns)", "Maximum Operating Pressure (PSI/bar)", "Flow Rate (SCFM or L/min)", "Drain Type (Manual or Automatic)", "Bowl Material (Polycarbonate or Metal)", "Operating Temperature Range (°C/°F)"],
+            },{
+                id: "hyd-4",
+                name: "Air Filter Regulator",
+                category: "Pneumatics & Hydraulics",
+                type: "Hydraulic Equipment",
+                image: "https://imgur.com/DeGRwWW.jpg",
+                description: "Essential component of an FRL (Filter-Regulator-Lubricator) unit, designed to remove solid particulates, condensate, and liquid oil from a compressed air supply, protecting downstream equipment from damage and ensuring optimal tool performance.",
+                specs: ["Port Size (NPT/BSP Thread)", "Filtration Rating (Microns)", "Regulated Pressure Range (PSI/bar)", "Maximum Inlet Pressure (PSI/bar)", "Flow Rate (SCFM/Liters per minute)", "Relieving vs. Non-Relieving Type", "Gauge Port Size", "Bowl Material (Polycarbonate or Metal)"],
             },
 
             // 3. Bearings & Power Transmission
@@ -643,7 +655,7 @@
                 name: " Grease Nipples  ",
                 category: "Industrial Consumables",
                 type: "Welding Supplies",
-                image: "https://imgur.com/K6M1v83.png",
+                image: "https://imgur.com/4baP9wq.jpg",
                 description: "A precision metal fitting (also known as a Zerk or Alemite fitting) used in mechanical systems to allow a grease gun to inject lubricant into bearings and joints under pressure. It functions as a non-return valve, preventing grease from escaping and protecting the lubrication point from contaminants. Essential for Maintenance, Repair, and Operations (MRO) across industries like Automotive, Agriculture, Mining, Construction, and General Manufacturing.",
                 specs: ["AWS E7018 Classification", "Low Hydrogen", "Tensile Strength 70,000 PSI"],
             },
@@ -684,6 +696,14 @@
                 image: "https://imgur.com/rPRSiVE.jpg",
                 description: "A sensor specifically designed to be submerged in a liquid (like a well or tank) to continuously measure the liquid level by sensing hydrostatic pressure. Industries Used Water & Wastewater Management, Environmental Monitoring, Blaqink Holdingscess Control.",
                 specs: ["Stainless Steel Housing", "Vented Cable", "4-20mA Output"],
+            },{
+                id: "elec-5",
+                name: "Heating Elements",
+                category: "Electrical & Instrumentation",
+                type: "Level/Pressure Measurement",
+                image: "https://imgur.com/ZGtP6sO.jpg",
+                description: "Devices that convert electrical energy into heat (thermal energy) through the principle of electrical resistance (Joule heating). They are essential for industrial processes that require precise, controlled temperature application, such as melting, drying, curing, or fluid heating. Common types include tubular (immersion), cartridge, band, and finned elements.",
+                specs: ["Voltage (AC/DC Supply in V)", "Termination Type (Threaded Studs, Lead Wires, Terminal Box)", "Wattage (Power Output in W/kW)"],
             },
 
             // 8. Measuring & Testing
@@ -760,6 +780,14 @@
                 image: "https://imgur.com/A6jiQJ8.jpg",
                 description: "Short piece of pipe (nipple) and connector (coupling) used to extend or join two pipe sections, typically for gas or low-pressure steam/water lines. Industries Used Plumbing, Fire Protection, Utilities.",
                 specs: ["ASTM A53/A106 Grade B Steel", "NPT Threaded Ends", "Schedule 40"],
+            },  {
+                id: "fit-5",
+                name: "Threaded Nipple & Couplings (Black Iron)",
+                category: "Fittings & Tubing",
+                type: "Threaded Components",
+                image: "https://imgur.com/YLjPbrj.jpg",
+                description: "The piston seal manufactured to meet the needs of earth moving equipment where operating conditions such as severe vibration, shock and high pressure are present. Industries Used Plumbing, Fire Protection, Utilities.",
+                specs: ["Pressure: = 700 bar", "Speed: = 0.5 m/s", "Temperature: -30°c + 110°c"],
             },
         ];
 
