@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Blaqink Holdings</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <!-- Custom CSS -->
     <style>
         :root {
             --primary-color: #1e3a8a;
@@ -224,10 +221,8 @@
     </div>
 </nav>
 
-    <!-- Products Section -->
     <section class="products-container">
         <div class="container">
-            <!-- Header Section -->
             <div class="mb-5">
                 <h1 class="page-title">Our Products & Services</h1>
                 <p class="page-subtitle">
@@ -235,7 +230,6 @@
                 </p>
             </div>
 
-            <!-- Filter Section -->
             <div class="filter-section">
                 <div class="d-flex align-items-center mb-3">
                     <i class="bi bi-funnel-fill me-2" style="color: var(--primary-color);"></i>
@@ -248,20 +242,17 @@
                     <button class="category-btn" data-category="Pneumatics & Hydraulics">Pneumatics & Hydraulics</button>
                     <button class="category-btn" data-category="Bearings & Power Transmission">Bearings & Power Transmission</button>
                     <button class="category-btn" data-category="Tools">Tools</button>
-                    <button class="category-btn" data-category="Safety & PPE">Safety & PPE</button>
                     <button class="category-btn" data-category="Industrial Consumables">Industrial Consumables</button>
                     <button class="category-btn" data-category="Electrical & Instrumentation">Electrical & Instrumentation</button>
                     <button class="category-btn" data-category="Measuring & Testing">Measuring & Testing</button>
                     <button class="category-btn" data-category="Fittings & Tubing">Fittings & Tubing</button>
+                  
                 </div>
             </div>
 
-            <!-- Products Grid -->
             <div id="products-grid" class="row">
-                <!-- Products will be dynamically inserted here -->
-            </div>
+                </div>
 
-            <!-- Empty State (Initially Hidden) -->
             <div id="empty-state" class="empty-state d-none">
                 <div class="empty-state-icon">
                     <i class="bi bi-info-circle" style="font-size: 2rem; color: var(--muted-color);"></i>
@@ -277,7 +268,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-primary text-white py-5">
         <div class="container">
             <div class="row">
@@ -288,111 +278,92 @@
                     </p>
                 </div>
                 
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <h5 class="fw-bold mb-3">Products</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Healthcare Equipment</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Mining Solutions</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Food & Beverage</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Logistics Systems</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <h5 class="fw-bold mb-3">Company</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
-                        <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Careers</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <h5 class="fw-bold mb-3">Contact</h5>
-                    <p class="text-light">Email: sales@industrialpro.com</p>
-                    <p class="text-light">Phone: +1 (555) 123-4567</p>
-                </div>
-            </div>
-            
-            <div class="border-top border-light pt-4 mt-4 text-center">
-                <p class="text-light mb-0">&copy; 2025 Blaqink Holdings. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+                <div class="col-md-6 col-lg-3 mb-4">...
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script>
-        // Products Data
-        const PRODUCTS = [
-            // 1. Valves
-            {
-                id: "valve-1",
-                name: "Knife Gate Valves",
-                category: "Valves",
-                type: "Knife Gate Valves",
-                image: "https://imgur.com/NuZRxrw.png",
-                description: "Manually or actuated operated knife gate valve designed for on/off and isolation in systems handling abrasive slurries, wastewater, pulp & paper, mining, cement, and chemical processing.",
-                specs: ["Zero leakage shutoff", "Stainless steel or ductile iron body", "EPDM or PTFE seat options"],
-            },
-            {
-                id: "valve-2",
-                name: "RSV Gate Valves",
-                category: "Valves",
-                type: "RSV Gate Valves",
-                image: "https://imgur.com/ga35cko.png",
-                description: "Robust rising stem gate valve used for clean water, wastewater, fire protection systems, irrigation, and general industrial flow shutoff applications",
-                specs: ["Ductile iron body", "Wedge-type sealing", "Corrosion-resistant stem"],
-            },
-            {
-                id: "valve-3",
-                name: "Butterfly Valves",
-                category: "Valves",
-                type: "Butterfly Valves",
-                image: "https://imgur.com/niXuXNP.png",
-                description: "Quarter-turn butterfly valve for regulating or isolating flow in pipelines carrying water, air, chemicals, or light slurries. Suitable for HVAC, water treatment, and industrial systems.",
-                specs: ["Wafer or lug type", "EPDM, NBR, or PTFE seat", "Stainless steel disc"],
-            },
-            {
-                id: "valve-4",
-                name: "Actuated Butterfly Valves",
-                category: "Valves",
-                type: "Actuated Butterfly Valves",
-                image: "https://imgur.com/1PBbMhT.png",
-                description: "Automated butterfly valve for remote flow control, integrating pneumatic or electric actuators for process automation in industrial and municipal systems.",
-                specs: ["Pneumatic or electric actuator", "Position indicator", "EPDM/PTFE seat"],
-            },
-            {
-                id: "valve-5",
-                name: "Globe Valves",
-                category: "Valves",
-                type: "Globe Valves",
-                image: "https://imgur.com/I9tr9TY.png",
-                description: "Linear motion control valve for throttling and regulating flow in pipelines handling steam, air, gas, oil, and water in industrial applications.",
-                specs: ["Cast steel or stainless steel body", "Rising stem design", "Metal-to-metal seating"],
-            },
-            {
-                id: "valve-6",
-                name: "Non-Return Valves",
-                category: "Valves",
-                type: "Non-Return Valves",
-                image: "https://imgur.com/FoWILpx.png",
-                description: "Automatic check valve that prevents reverse flow in water, steam, and chemical pipelines, protecting pumps and ensuring system stability.",
-                specs: ["Swing or lift type", "Stainless steel or cast iron", "Buna-N or EPDM seatMetal-to-metal seating"],
-            },
-            {
-                id: "valve-7",
-                name: "Y-Strainers",
-                category: "Valves",
-                type: "Y-Strainers",
-                image: "https://imgur.com/ZaLpbxc.png",
-                description: "Mechanical strainer for trapping debris, rust, and foreign particles to protect pumps, valves, meters, and regulators in industrial pipelines. ",
-                specs: ["Cast steel or stainless steel body", "Blow-off plug", "Pressure rating: PN16"],
-            },
-            {
-                id: "valve-8",
+<div class="border-top border-light pt-4 mt-4 text-center"> 
+    <p class="text-light mb-0">&copy; 2025 Blaqink Holdings. All rights reserved.</p> 
+</div> 
+</div> 
+</footer> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+<script> 
+// Products Data 
+const PRODUCTS = [ 
+    // 1. Valves 
+    { 
+        id: "valve-1", 
+        name: "Knife Gate Valves", 
+        category: "Valves", 
+        type: "Knife Gate Valves", 
+        image: "https://imgur.com/NuZRxrw.png", 
+        description: "Manually or actuated operated knife gate valve designed for on/off and isolation in systems handling abrasive slurries, wastewater, pulp & paper, mining, cement, and chemical processing.", 
+        specs: ["Zero leakage shutoff", "Stainless steel or ductile iron body", "EPDM or PTFE seat options"], 
+    }, 
+    { 
+        id: "valve-2", 
+        name: "RSV Gate Valves", 
+        category: "Valves", 
+        type: "RSV Gate Valves", 
+        image: "https://imgur.com/ga35cko.png", 
+        description: "Robust rising stem gate valve used for clean water, wastewater, fire protection systems, irrigation, and general industrial flow shutoff applications", 
+        specs: ["Ductile iron body", "Wedge-type sealing", "Corrosion-resistant stem"], 
+    },
+    { 
+        id: "valve-3", 
+        name: "Butterfly Valves", 
+        category: "Valves", 
+        type: "Butterfly Valves", 
+        image: "https://imgur.com/niXuXNP.png", 
+        description: "Quarter-turn butterfly valve for regulating or isolating flow in pipelines carrying water, air, chemicals, or light slurries. Suitable for HVAC, water treatment, and industrial processes.", 
+        specs: ["Wafer & Lug options", "Resilient seated", "Low torque operation"], 
+    }, 
+    { 
+        id: "valve-4", 
+        name: "Check Valves (Non-Return)", 
+        category: "Valves", 
+        type: "Check Valves", 
+        image: "https://imgur.com/sazoDSB.png", 
+        description: "Automatically prevents backflow in a pipeline without external power. Available in swing, lift, and ball check designs for various fluid dynamics.", 
+        specs: ["Swing or Lift Type", "Threaded or Flanged ends", "Minimal pressure drop"], 
+    }, 
+    { 
+        id: "valve-5", 
+        name: "Globe Valves", 
+        category: "Valves", 
+        type: "Globe Valves", 
+        image: "https://imgur.com/PmrpbK7.png", 
+        description: "Used for throttling and regulating flow in a pipeline. The design causes a higher pressure drop but provides superior flow control compared to gate valves.", 
+        specs: ["T-Pattern, Y-Pattern, Angle Pattern", "Stem Sealing: Bellows or Gland Packing", "Excellent throttling capability"], 
+    }, 
+    { 
+        id: "valve-6", 
+        name: "Standard Ball Valves", 
+        category: "Valves", 
+        type: "Ball Valves", 
+        image: "https://imgur.com/Js2uWST.png", 
+        description: "Quarter-turn on/off isolation valve with a rotating ball to control flow. Provides quick shutoff and tight sealing for water, oil, gas, and air.", 
+        specs: ["Threaded or Flanged options", "Full bore or Reduced bore", "PN16 / 150# rating"], 
+    }, 
+    { 
+        id: "valve-7", 
+        name: "Relief Valves", 
+        category: "Valves", 
+        type: "Relief Valves", 
+        image: "https://imgur.com/mLkakK5.png", 
+        description: "Safety valve designed to open when the pressure of a fluid exceeds a predetermined maximum, protecting equipment from over-pressurization.", 
+        specs: ["Spring-loaded", "Set pressure range", "Bronze or Stainless Steel body"], 
+    }, 
+    { 
+        id: "valve-8", 
+        name: "Y-Strainers", 
+        category: "Valves", 
+        type: "Y-Strainers", 
+        image: "https://imgur.com/ZaLpbxc.png", 
+        description: "Mechanical strainer for trapping debris, rust, and foreign particles to protect pumps, valves, meters, and regulators in industrial pipelines.", 
+        specs: ["Cast steel or stainless steel body", "Blow-off plug", "Pressure rating: PN16"], 
+    },
+      {
+                id: "valve-9",
                 name: "Pneumatic Valves",
                 category: "Valves",
                 type: "Y-Strainers",
@@ -400,19 +371,84 @@
                 description: "Mechanical strainer for trapping debris, rust, and foreign particles to protect pumps, valves, meters, and regulators in industrial pipelines. ",
                 specs: ["Cast steel or stainless steel body", "Blow-off plug", "Pressure rating: PN16"],
             },
+    // New Valves
+    {
+        id: "valve-9",
+        name: "High-Pressure Ball Valve",
+        category: "Valves",
+        type: "Ball Valves",
+        image: "https://imgur.com/KoT5d5U.png", // Placeholder image
+        description: "Heavy-duty two-piece or three-piece ball valve constructed for reliable on/off service in ultra-high pressure hydraulic and fluid power applications.",
+        specs: ["Working Pressure: Up to 10,000 PSI", "Stainless Steel/Carbon Steel", "Blowout-proof stem"],
+    },
+    {
+        id: "valve-10",
+        name: "Needle and Flow Control Valves",
+        category: "Valves",
+        type: "Flow Control",
+        image: "https://imgur.com/LYJMM7k.png", // Placeholder image
+        description: "Precision valve used for fine regulation and metering of fluid flow, allowing highly accurate setting of flow rates for process control applications.",
+        specs: ["Micro-metering capability", "Angle and Straight patterns", "High-grade brass or stainless steel"],
+    },
 
-            // 2. Pneumatics & Hydraulics
+    // 2. Pneumatics & Hydraulics 
+    { 
+        id: "pneu-1", 
+        name: "ISO 15552 Standard Cylinder", 
+        category: "Pneumatics & Hydraulics", 
+        type: "Pneumatic Equipment", 
+        image: "https://imgur.com/OC0tNfD.png", 
+        description: "Standardized linear actuator used to push, pull, or lift objects in automated machinery. Features a lightweight aluminum profile and magnetic piston.", 
+        specs: ["Bore: 32-125mm", "Max 10 bar"], 
+    }, 
+    { 
+        id: "pneu-2", 
+        name: "3/2 Solenoid Directional Control Valve", 
+        category: "Pneumatics & Hydraulics", 
+        type: "Pneumatic Valves", 
+        image: "https://imgur.com/I9XtIpA.png", 
+        description: "Electrically operated valve used to direct or stop the flow of compressed air to control pneumatic actuators and machinery.", 
+        specs: ["Voltage: 24V DC", "Port size: G1/4", "IP65 Rated"], 
+    }, 
+    { 
+        id: "pneu-3", 
+        name: "Air Preparation FRL Unit", 
+        category: "Pneumatics & Hydraulics", 
+        type: "Air Preparation", 
+        image: "https://imgur.com/OycO76D.png", 
+        description: "A modular FRL (Filter-Regulator-Lubricator) unit, designed to remove solid particulates, condensate, and liquid oil from a compressed air supply, protecting downstream equipment from damage and ensuring optimal tool performance.", 
+        specs: ["Port Size (NPT/BSP Thread)", "Filtration Rating (Microns)", "Regulated Pressure Range (PSI/bar)", "Maximum Inlet Pressure (PSI/bar)", "Flow Rate (SCFM/Liters per minute)", "Relieving vs. Non-Relieving Type", "Gauge Port Size", "Bowl Material (Polycarbonate or Metal)"], 
+    }, 
+    // New Pneumatics & Hydraulics
+    {
+        id: "pneu-4",
+        name: "CEJN Ultra High-Pressure Couplers",
+        category: "Pneumatics & Hydraulics",
+        type: "Quick Couplers",
+        image: "https://imgur.com/2yJVrR3.png", // Placeholder image
+        description: "CEJN branded non-drip quick-connect couplings specifically designed for safe and efficient operation in extreme high-pressure fluid applications, minimizing spillage and downtime.",
+        specs: ["Maximum Working Pressure: 3,000 bar (43,500 psi)", "Non-Drip Connection", "Safety locking ring"],
+    },
+    {
+        id: "pneu-5",
+        name: "General Quick Release Couplers (Hydraulic & Pneumatic)",
+        category: "Pneumatics & Hydraulics",
+        type: "Quick Couplers",
+        image: "https://imgur.com/MoC6Qht.png", // Placeholder image
+        description: "Interchangeable push-to-connect and screw-type quick-release couplings for general purpose pneumatic and low-to-medium pressure hydraulic lines.",
+        specs: ["Various industry standards (ISO A/B, Tema, Rectus)", "Brass, Steel, and Stainless Steel options", "Single and Double shut-off"],
+    },
+    {
+        id: "pneu-6",
+        name: "High Flow Air Regulator",
+        category: "Pneumatics & Hydraulics",
+        type: "Air Preparation",
+        image: "https://imgur.com/Unny5Zc.png", // Placeholder image
+        description: "Precision pressure regulator for maintaining a constant outlet pressure despite variations in inlet pressure and flow rate, essential for pneumatic tool and machinery operation.",
+        specs: ["High flow capacity", "Port Size: 1/2'' to 1''", "Regulated Pressure Range: 0.5 to 10 bar"],
+    },
             {
-                id: "pneu-1",
-                name: "ISO 15552 Standard Cylinder",
-                category: "Pneumatics & Hydraulics",
-                type: "Pneumatic Equipment",
-                image: "https://imgur.com/OC0tNfD.png",
-                description: "Standardized linear actuator used to push, pull, or lift objects in automated machinery. Features a lightweight aluminum profile and magnetic piston.",
-                specs: ["Bore: 32-125mm", "Max 10 bar", "Adjustable Cushioning"],
-            },
-            {
-                id: "pneu-2",
+                id: "pneu-8",
                 name: "Modular FRL Unit",
                 category: "Pneumatics & Hydraulics",
                 type: "Pneumatic Equipment",
@@ -421,7 +457,7 @@
                 specs: ["5μm Filtration", "0-12 bar Range", "Auto-drain"],
             },
             {
-                id: "hyd-1",
+                id: "pneu-9",
                 name: "Heavy-Duty Tie Rod Cylinder",
                 category: "Pneumatics & Hydraulics",
                 type: "Hydraulic Equipment",
@@ -430,7 +466,7 @@
                 specs: ["3000 PSI Continuous", "Chrome-plated Rod", "Viton Seals"],
             },
             {
-                id: "hyd-2",
+                id: "pneu-10",
                 name: "Hydraulic Power Unit (HPU)",
                 category: "Pneumatics & Hydraulics",
                 type: "Hydraulic Equipment",
@@ -438,7 +474,7 @@
                 description: "Self-contained power system consisting of a motor, reservoir, and pump that generates the hydraulic flow required for industrial lifts.",
                 specs: ["20-100L Tank", "Max 250 bar", "High Efficiency Motor"],
             }, {
-                id: "hyd-3",
+                id: "pneu-11",
                 name: "Fuel Filter Regulator",
                 category: "Pneumatics & Hydraulics",
                 type: "Hydraulic Equipment",
@@ -446,7 +482,7 @@
                 description: "Essential component of an FRL (Filter-Regulator-Lubricator) unit, designed to remove solid particulates, condensate, and liquid oil from a compressed air supply, protecting downstream equipment from damage and ensuring optimal tool performance.",
                 specs: ["Port Size (Inlet/Outlet Thread)", "Filtration Rating (Microns)", "Maximum Operating Pressure (PSI/bar)", "Flow Rate (SCFM or L/min)", "Drain Type (Manual or Automatic)", "Bowl Material (Polycarbonate or Metal)", "Operating Temperature Range (°C/°F)"],
             },{
-                id: "hyd-4",
+                id: "pneu-12",
                 name: "Air Filter Regulator",
                 category: "Pneumatics & Hydraulics",
                 type: "Hydraulic Equipment",
@@ -455,27 +491,86 @@
                 specs: ["Port Size (NPT/BSP Thread)", "Filtration Rating (Microns)", "Regulated Pressure Range (PSI/bar)", "Maximum Inlet Pressure (PSI/bar)", "Flow Rate (SCFM/Liters per minute)", "Relieving vs. Non-Relieving Type", "Gauge Port Size", "Bowl Material (Polycarbonate or Metal)"],
             },
 
-            // 3. Bearings & Power Transmission
-            {
-                id: "bear-1",
-                name: "Deep Groove Ball Bearing",
+    // 3. Bearings & Power Transmission 
+    { 
+        id: "bear-1", 
+        name: "Deep Groove Ball Bearing", 
+        category: "Bearings & Power Transmission", 
+        type: "Bearings", 
+        image: "https://imgur.com/NKvrRHE.png", 
+        description: "The most common, versatile rolling bearing, suitable for moderate radial and axial loads at high rotational speeds. Simple design and low maintenance. Industries Used Electric Motors, Gearboxes, Home Appliances ", 
+        specs: ["Single row", "High Load Capacity", "Sealed (2RS) or shielded (ZZ) options."], 
+    }, 
+    { 
+        id: "bear-2", 
+        name: "Tapered Roller Bearing", 
+        category: "Bearings & Power Transmission", 
+        type: "Bearings", 
+        image: "https://imgur.com/1rVJuMv.png", 
+        description: "Designed to manage combined radial and high axial loads simultaneously. Consists of four components: cone, cup, tapered rollers, and cage. Industries Used Automotive Wheels, Gearboxes, Agricultural Equipment", 
+        specs: ["Inch and Metric series", "Case-hardened steel", "High rigidity"], 
+    }, 
+    { 
+        id: "pt-3", 
+        name: "Classical V-Belt (A, B, C, D profiles)", 
+        category: "Bearings & Power Transmission", 
+        type: "Power Transmission Components", 
+        image: "https://imgur.com/qYA3yWr.png", 
+        description: "Durable rubber belts used to transmit power between two or more pulleys. The trapezoidal shape wedges into the pulley groove, improving torque transfer.", 
+        specs: ["Oil and heat resistant", "High tensile strength"], 
+    }, 
+    { 
+        id: "pt-4", 
+        name: "Hydraulic Rod Seal (U-Cup)", 
+        category: "Bearings & Power Transmission", 
+        type: "Power Transmission Components", 
+        image: "https://imgur.com/wt8ePkj.jpg", 
+        description: "A dynamic seal used to prevent high-pressure fluid leakage from the cylinder rod end during extension and retraction. Shaped like a 'U' for active sealing. Industries Used Hydraulic Cylinders, Hydraulic Cylinders, Presses, Heavy Construction Equipment.", 
+        specs: ["Polyurethane (PU) or NBR material", "Pressure resistance up to 400 bar ", "Excellent abrasion resistance."], 
+    }, 
+    { 
+        id: "pt-5", 
+        name: "Rotary Shaft Lip Seal (Oil Seal)", 
+        category: "Bearings & Power Transmission", 
+        type: "Power Transmission Components", 
+        image: "https://imgur.com/5KrEXcl.jpg", 
+        description: "Retains lubricant and excludes contaminants from a rotary shaft system. Features a metal case and a flexible, spring-loaded elastomer lip. Industries UsedGearboxes, Electric Motors, Automotive Engines, Pumps.", 
+        specs: ["NBR or FKM (Viton) material", "Designed for peripheral speeds", "Low rotational friction."], 
+    }, 
+    { 
+        id: "pt-6", 
+        name: "Industrial Gearbox (Helical)", 
+        category: "Bearings & Power Transmission", 
+        type: "Power Transmission Components", 
+        image: "https://imgur.com/7jkoakJ.png", 
+        description: "A speed reducer that uses helical gears for smooth, quiet, and efficient power transmission. Ideal for continuous duty applications like conveyors and mixers.", 
+        specs: ["Cast Iron Housing", "Output torque ratings", "High efficiency"], 
+    },   {
+                id: "pt-7",
+                name: "Industrial O-Ring Set",
                 category: "Bearings & Power Transmission",
-                type: "Bearings",
-                image: "https://imgur.com/NKvrRHE.png",
-                description: "The most common, versatile rolling bearing, suitable for moderate radial and axial loads at high rotational speeds. Simple design and low maintenance. Industries Used Electric Motors, Gearboxes, Home Appliances ",
-                specs: ["Single row", "High Load Capacity", "Sealed (2RS) or shielded (ZZ) options."],
-            },
-            {
-                id: "bear-2",
-                name: "Tapered Roller Bearing",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/twdzh55.jpg",
+                description: "A simple, versatile, and inexpensive seal shaped like a torus (doughnut). Used primarily for static sealing to block a path for fluid or gas leakage. Industries Used Flanges, Pipe Connections, Pneumatic Fittings, Chemical Processing.",
+                specs: ["High chemical resistance,", "Wide temperature range.", "Available in Viton"],
+            }, {
+                id: "pt-8",
+                name: "Rotary Shaft Lip Seal (Oil Seal)",
                 category: "Bearings & Power Transmission",
-                type: "Bearings",
-                image: "https://imgur.com/1rVJuMv.png",
-                description: "Designed to manage combined heavy radial and axial loads simultaneously. Components (cone and cup) are separable for easy mounting. Industries Used Automotive Wheel Hubs, Heavy Truck Axles, Industrial Gear Drives.",
-                specs: ["Self-aligning", "High Load Capacity", "Steel Cage"],
-            },
-            {
-                id: "pt-1",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/5KrEXcl.jpg",
+                description: "Retains lubricant and excludes contaminants from a rotary shaft system. Features a metal case and a flexible, spring-loaded elastomer lip. Industries UsedGearboxes, Electric Motors, Automotive Engines, Pumps.",
+                specs: ["NBR or FKM (Viton) material", "Designed for peripheral speeds", "Low rotational friction."],
+            }, {
+                id: "pt-9",
+                name: "Flexible Gear Coupling",
+                category: "Bearings & Power Transmission",
+                type: "Power Transmission Components",
+                image: "https://imgur.com/SzYIB0t.jpg",
+                description: "Used to connect two rotating shafts that may be slightly misaligned. High torque capacity due to external and internal geared teeth. Industries Used Industrial Pumps, Compressors, Conveyor Systems.",
+                specs: ["ANSI Standard", "Carbon Steel", "High Tensile Strength"],
+            },  {
+                id: "pt-10",
                 name: "V-Belt and Pulley System",
                 category: "Bearings & Power Transmission",
                 type: "Power Transmission Components",
@@ -483,55 +578,27 @@
                 description: "Transmits power efficiently over moderate distances using a trapezoidal belt that wedges into a pulley groove. Provides essential shock absorption. Industries Used HVAC Systems, Agricultural Machinery, Industrial Conveyors.",
                 specs: ["Belt profiles (A, B, C)", "Cast Iron or Aluminum Pulley", "Fixed speed ratio."],
             },
-            {
-                id: "pt-2",
-                name: "Roller Chain and Sprocket",
-                category: "Bearings & Power Transmission",
-                type: "Power Transmission Components",
-                image: "https://imgur.com/oUACOJW.jpg",
-                description: "Mechanism for transmitting high torque using a continuous loop of chain links that mesh with sprockets. Known for durability in harsh environments. Industries Used Motorcycle Drive Systems, Industrial Machinery, Agricultural Equipment.",
-                specs: ["ANSI Standard", "High Torque Capacity,", "Requires routine lubrication"],
-            },
-            {
-                id: "pt-3",
-                name: "Flexible Gear Coupling",
-                category: "Bearings & Power Transmission",
-                type: "Power Transmission Components",
-                image: "https://imgur.com/SzYIB0t.jpg",
-                description: "Used to connect two rotating shafts that may be slightly misaligned. High torque capacity due to external and internal geared teeth. Industries Used Industrial Pumps, Compressors, Conveyor Systems.",
-                specs: ["ANSI Standard", "Carbon Steel", "High Tensile Strength"],
-            },
-            {
-                id: "pt-4",
-                name: "Hydraulic Rod Seal (U-Cup)",
-                category: "Bearings & Power Transmission",
-                type: "Power Transmission Components",
-                image: "https://imgur.com/wt8ePkj.jpg",
-                description: "A dynamic seal used to prevent high-pressure fluid leakage from the cylinder rod end during extension and retraction. Shaped like a 'U' for active sealing. Industries Used Hydraulic Cylinders,Hydraulic Cylinders, Presses, Heavy Construction Equipment.",
-                specs: ["Polyurethane (PU) or NBR material", "Pressure resistance up to 400 bar ", "Excellent abrasion resistance."],
-            },
-            {
-                id: "pt-5",
-                name: "Rotary Shaft Lip Seal (Oil Seal)",
-                category: "Bearings & Power Transmission",
-                type: "Power Transmission Components",
-                image: "https://imgur.com/5KrEXcl.jpg",
-                description: "Retains lubricant and excludes contaminants from a rotary shaft system. Features a metal case and a flexible, spring-loaded elastomer lip. Industries UsedGearboxes, Electric Motors, Automotive Engines, Pumps.",
-                specs: ["NBR or FKM (Viton) material", "Designed for peripheral speeds", "Low rotational friction."],
-            },
-            {
-                id: "pt-6",
-                name: "Industrial O-Ring Set",
-                category: "Bearings & Power Transmission",
-                type: "Power Transmission Components",
-                image: "https://imgur.com/twdzh55.jpg",
-                description: "A simple, versatile, and inexpensive seal shaped like a torus (doughnut). Used primarily for static sealing to block a path for fluid or gas leakage. Industries Used Flanges, Pipe Connections, Pneumatic Fittings, Chemical Processing.",
-                specs: ["High chemical resistance,", "Wide temperature range.", "Available in Viton"],
-            },
 
-            // 4. Tools
-            {
-                id: "tool-1",
+    // 4. Tools 
+    { 
+        id: "tool-1", 
+        name: "Combination Spanner Set", 
+        category: "Tools", 
+        type: "Hand Tools", 
+        image: "https://imgur.com/uSEiNGV.png", 
+        description: "A complete set of chrome vanadium steel combination spanners (wrench), featuring a jaw on one end and a twelve-point ring on the other for high torque applications. Industries Used Automotive, General Maintenance, Workshop Operations.", 
+        specs: ["Chrome Vanadium Steel", "Metric and Imperial sizes", "Mirror Polished finish"], 
+    }, 
+    { 
+        id: "tool-2", 
+        name: "Heavy-Duty Pipe Wrench", 
+        category: "Tools", 
+        type: "Hand Tools", 
+        image: "https://imgur.com/AoTWGEs.png", 
+        description: "A robust, adjustable wrench with hardened jaws for gripping and turning soft iron pipes and fittings in plumbing and industrial maintenance. Industries Used Plumbing, HVAC, Industrial Maintenance.", 
+        specs: ["Straight handle", "36-inch length", "Drop-forged steel"], 
+    },  {
+                id: "tool-3",
                 name: "Pro-Series Cordless Drill",
                 category: "Tools",
                 type: "Power Tools",
@@ -540,7 +607,7 @@
                 specs: ["18V Lithium-Ion", "Brushless Motor", "2-Speed Gearbox"],
             },
             {
-                id: "tool-2",
+                id: "tool-4",
                 name: "Precision CNC End Mill",
                 category: "Tools",
                 type: "Cutting Tools",
@@ -549,7 +616,7 @@
                 specs: ["Solid Carbide", "4-Flute", "TiAlN Coated"],
             },
             {
-                id: "tool-3",
+                id: "tool-5",
                 name: "Heavy-Duty Hydraulic Puller",
                 category: "Tools",
                 type: "Specialty Tools",
@@ -557,101 +624,100 @@
                 description: "Essential tool for safely removing large, press-fit components like pulleys, gears, and flywheels with minimal effort and high pulling force. Industries Used Automotive Repair, Industrial Maintenance, Mechanical Workshops.",
                 specs: ["10-Ton Capacity", "3-Jaw design", "Drop-forged steel"],
             },
-            {
-                id: "tool-4",
-                name: "Industrial Pipe Wrench",
-                category: "Tools",
-                type: "Hand Tools",
-                image: "https://imgur.com/az3Nov5.png",
-                description: "A robust, adjustable wrench with hardened jaws for gripping and turning soft iron pipes and fittings in plumbing and industrial maintenance. Industries Used Plumbing, HVAC, Industrial Maintenance.",
-                specs: ["Straight handle", "36-inch length", "Drop-forged steel"],
-            },
+         
 
-            // 5. Safety & PPE
-            {
-                id: "safe-1",
-                name: "High-Visibility Safety Vest",
-                category: "Safety & PPE",
-                type: "Protective Clothing",
-                image: "https://imgur.com/VqNpDr4.jpg",
-                description: "Class 2 reflective safety vest with multiple pockets. Lightweight mesh fabric ensures breathability during long shifts. Industries Used Construction, Roadwork, Warehouse Operations.",
-                specs: ["ANSI/ISEA 107", "360° Reflective", "Zipper Closure"],
-            },
-            {
-                id: "safe-2",
-                name: "Impact Safety Helmet",
-                category: "Safety & PPE",
-                type: "Head Protection",
-                image: "https://imgur.com/Yu3y0yo.png",
-                description: "Lightweight, vented safety helmet with a six-point ratchet suspension system for superior comfort and protection against falling objects and electrical hazards. Industries Used Construction, Manufacturing, Electrical Work.",
-                specs: ["ANSI Z89.1 Type I, Class E", "6-point Ratchet Suspension", "Vented Shell"],
-            },
-            {
-                id: "safe-3",
-                name: "Chemical Resistant Gloves",
-                category: "Safety & PPE",
-                type: "Hand Protection",
-                image: "https://imgur.com/Q752kWM.png",
-                description: "Heavy-duty nitrile gloves designed for optimal grip and protection when handling solvents, oils, and various hazardous chemicals in industrial environments. Industries Used Chemical Processing, Laboratory Work, Manufacturing.",
-                specs: ["15 mil Nitrile", "Flocked Lining", "FDA Compliant"],
-            },
-            {
-                id: "safe-4",
-                name: "Reusable Ear Plugs",
-                category: "Safety & PPE",
-                type: "Hearing Protection",
-                image: "https://imgur.com/GT8dOra.png",
-                description: "High-attenuation reusable earplugs made of soft silicone material, offering comfortable, long-term hearing protection in high-noise industrial settings. Industries Used Manufacturing, Construction, Aviation.",
-                specs: ["NRR 28 dB", "Washable Silicone", "Corded"],
-            },
-            {
-                id: "safe-5",
-                name: "Full-Face Respirator",
-                category: "Safety & PPE",
-                type: "Respiratory Protection",
-                image: "https://imgur.com/L83pR67.jpg",
-                description: "Professional-grade full-facepiece respirator providing wide-field vision and comprehensive protection against airborne particulates, gases, and vapors. Compatible with various cartridges. Industries Used Painting, Chemical Handling, Emergency Response.",
-                specs: ["NIOSH Approved", "Silicone Facepiece", "Wide Viewing Lens"],
-            },
-
-            // 6. Industrial Consumables
-            {
-                id: "cons-1",
+    // 5. Industrial Consumables
+    { 
+        id: "cons-1", 
+        name: "RTV Silicone Sealant", 
+        category: "Industrial Consumables", 
+        type: "Sealing Compounds", 
+        image: "https://imgur.com/yp4EBOp.png", 
+        description: "High-temperature, flexible RTV (Room Temperature Vulcanizing) silicone sealant used for gasketing and sealing applications in engines, pumps, and industrial equipment.", 
+        specs: ["Temperature Resistance: -60°C to 300°C", "Curing Time: 24 hours", "Acetoxy Cure System"], 
+    }, 
+    { 
+        id: "cons-2", 
+        name: "Extreme Pressure Gear Oil", 
+        category: "Industrial Consumables", 
+        type: "Lubricants", 
+        image: "https://imgur.com/ApkhvmR.png", 
+        description: "High-performance, extreme-pressure lubricant designed for heavy-duty enclosed gear drives and bearings operating under high stress and varying temperatures. Industries Used Manufacturing, Mining, Heavy Equipment.", 
+        specs: ["ISO VG 220", "EP Additives", "Wide Temperature Stability"], 
+    }, 
+    { 
+        id: "cons-3", 
+        name: "Degreaser/Cleaning Solvent", 
+        category: "Industrial Consumables", 
+        type: "Chemicals/Cleaners", 
+        image: "https://imgur.com/UWkkUIx.png", 
+        description: "Fast-evaporating, non-chlorinated solvent for quickly removing oil, grease, dirt, and flux residues from electrical and mechanical components without leaving a residue. industries Used Electronics Manufacturing, Automotive Maintenance, Industrial Cleaning.", 
+        specs: ["Non-flammable", "Zero Residue", "VOC Compliant"], 
+    }, 
+    { 
+        id: "cons-4", 
+        name: "E7018 Welding Electrodes", 
+        category: "Industrial Consumables", 
+        type: "Welding Supplies", 
+        image: "https://imgur.com/IhUgz4Z.png", 
+        description: "Low-hydrogen electrodes designed for structural welding of mild and low-alloy steels. Provides high deposition efficiency, excellent slag control, and superior weld metal quality. Structural Steel Fabrication, Shipbuilding, Pipeline Construction", 
+        specs: ["AWS E7018 Classification", "All-position welding", "Low moisture absorption"], 
+    },
+    // New Industrial Consumables
+    {
+        id: "cons-5",
+        name: "Copper and Aluminium Washers",
+        category: "Industrial Consumables",
+        type: "Sealing/Washers",
+        image: "https://imgur.com/J14TwpO.png", // Placeholder image
+        description: "Soft metal washers used for sealing high-temperature, high-pressure, or corrosive fluid connections in automotive and industrial engines, hydraulics, and pipelines.",
+        specs: ["Annealed copper/aluminium", "Metric and imperial sizes", "High malleability for superior seal"],
+    },
+    {
+        id: "cons-6",
+        name: "Dowty Bonded Washers",
+        category: "Industrial Consumables",
+        type: "Sealing/Washers",
+        image: "https://imgur.com/uHLIBi8.png", // Placeholder image
+        description: "A combined metal washer and rubber seal bonded together, providing a high-pressure, leak-proof seal for bolt heads and fluid ports, commonly used in hydraulic systems.",
+        specs: ["Nitrile or Viton rubber", "Zinc-plated steel ring", "High pressure rating"],
+    },
+    {
+        id: "cons-7",
+        name: "Grease Nipples and Equipment",
+        category: "Industrial Consumables",
+        type: "Lubrication",
+        image: "https://imgur.com/gPqanQp.png", // Placeholder image
+        description: "Various types of grease nipples (zerk fittings) and related hoses and couplers for securely attaching a grease gun to machinery for routine lubrication maintenance.",
+        specs: ["Metric and Imperial threads", "Straight, 45°, and 90° options", "Hardened steel construction"],
+    },
+    {
+        id: "cons-8",
+        name: "Worm Drive Hose Clamps",
+        category: "Industrial Consumables",
+        type: "Clamping",
+        image: "https://imgur.com/RgKtN1Q.png", // Placeholder image
+        description: "Adjustable clamps with a worm-drive screw mechanism used for securing hoses onto fittings, ensuring a tight seal against fluid pressure leaks.",
+        specs: ["304 Stainless Steel band", "Range of diameters", "High clamping force"],
+    },
+    {
+        id: "cons-9",
+        name: "Heavy-Duty Pipe Clamps",
+        category: "Industrial Consumables",
+        type: "Clamping",
+        image: "https://imgur.com/tpv4ZME.png", // Placeholder image
+        description: "Rigid or cushioned clamps for securely mounting pipes, tubes, and hoses to industrial structures to prevent movement, vibration, and damage.",
+        specs: ["Heavy gauge steel/Polypropylene cushions", "High load capacity", "DIN standard compliant"],
+    },  {
+                id: "cons-10",
                 name: "Heavy-Duty Grinding Wheel",
                 category: "Industrial Consumables",
                 type: "Abrasives",
                 image: "https://imgur.com/w2Ea2D2.png",
                 description: "Reinforced grinding wheel for aggressive metal removal. Optimized bond matrix ensures long wheel life and safety. Industries Used Metal Fabrication, Automotive Repair, Construction.",
                 specs: ["Aluminum Oxide", "Fiberglass Reinforced", "4500 RPM Max"],
-            },
-            {
-                id: "cons-2",
-                name: "Industrial Gear Oil",
-                category: "Industrial Consumables",
-                type: "Lubricants/Oils",
-                image: "https://imgur.com/JpkCJZJ.jpg",
-                description: "High-performance, extreme-pressure lubricant designed for heavy-duty enclosed gear drives and bearings operating under high stress and varying temperatures. Industries Used Manufacturing, Mining, Heavy Equipment.",
-                specs: ["ISO VG 220", "EP Additives", "Wide Temperature Stability"],
-            },
-            {
-                id: "cons-3",
-                name: "Degreaser/Cleaning Solvent",
-                category: "Industrial Consumables",
-                type: "Chemicals/Cleaners",
-                image: "https://imgur.com/UWkkUIx.png",
-                description: "Fast-evaporating, non-chlorinated solvent for quickly removing oil, grease, dirt, and flux residues from electrical and mechanical components without leaving a residue. industries Used Electronics Manufacturing, Automotive Maintenance, Industrial Cleaning.",
-                specs: ["Non-flammable", "Zero Residue", "VOC Compliant"],
-            },
-            {
-                id: "cons-4",
-                name: "E7018 Welding Electrodes",
-                category: "Industrial Consumables",
-                type: "Welding Supplies",
-                image: "https://imgur.com/IhUgz4Z.png",
-                description: "Low-hydrogen electrodes designed for structural welding of mild and low-alloy steels. Provides high deposition efficiency, excellent slag control, and superior weld metal quality. Structural Steel Fabrication, Shipbuilding, Pipeline Construction.",
-                specs: ["AWS E7018 Classification", "Low Hydrogen", "Tensile Strength 70,000 PSI"],
-             }, {
-               id: "cons-5",
+            }, {
+               id: "cons-11",
                 name: " Grease Nipples  ",
                 category: "Industrial Consumables",
                 type: "Welding Supplies",
@@ -660,9 +726,63 @@
                 specs: ["AWS E7018 Classification", "Low Hydrogen", "Tensile Strength 70,000 PSI"],
             },
 
-            // 7. Electrical & Instrumentation
-            {
-                id: "elec-1",
+    // 6. Electrical & Instrumentation 
+    { 
+        id: "elec-1", 
+        name: "Proximity Sensor", 
+        category: "Electrical & Instrumentation", 
+        type: "Industrial Sensing", 
+        image: "https://imgur.com/XvWdY0U.png", 
+        description: "Non-contact sensor used to detect the presence of nearby objects (usually metallic for inductive types) without physical touch. Essential for counting, positioning, and inspection tasks in automation.", 
+        specs: ["Inductive or Capacitive type", "NPN/PNP output", "IP67 Rated"], 
+    }, 
+    { 
+        id: "elec-2", 
+        name: "HMI Panel (Human Machine Interface)", 
+        category: "Electrical & Instrumentation", 
+        type: "Industrial Control", 
+        image: "https://imgur.com/TfbP3Y0.png", 
+        description: "Touchscreen display that provides a graphical interface for operators to monitor and control automated processes. Essential for visualization and data entry on the factory floor.", 
+        specs: ["7-inch to 15-inch screen sizes", "Ethernet/Serial communication", "IP65 front panel"], 
+    }, 
+    { 
+        id: "elec-3", 
+        name: "Managed Industrial Ethernet Switch", 
+        category: "Electrical & Instrumentation", 
+        type: "Networking", 
+        image: "https://imgur.com/5XZtdVu.png", 
+        description: "Rugged, managed network switch designed to provide reliable, high-speed data communication in harsh industrial environments with extreme temperatures and vibration.", 
+        specs: ["DIN Rail Mount", "IP30 Rated Housing", "Managed Layer 2"], 
+    }, 
+    { 
+        id: "elec-4", 
+        name: "Submersible Pressure Transmitter", 
+        category: "Electrical & Instrumentation", 
+        type: "Level/Pressure Measurement", 
+        image: "https://imgur.com/rPRSiVE.jpg", 
+        description: "A sensor specifically designed to be submerged in a liquid (like a well or tank) to continuously measure the liquid level by sensing hydrostatic pressure. Industries Used Water & Wastewater Management, Environmental Monitoring, Process Control.", 
+        specs: ["Stainless Steel Housing", "Vented Cable", "4-20mA Output"], 
+    }, 
+    { 
+        id: "elec-5", 
+        name: "Heating Elements", 
+        category: "Electrical & Instrumentation", 
+        type: "Process Heating", 
+        image: "https://imgur.com/ZGtP6sO.jpg", 
+        description: "Devices that convert electrical energy into heat (thermal energy) through the principle of electrical resistance (Joule heating). They are essential for industrial processes that require precise, controlled temperature.", 
+        specs: ["Various wattages and voltages", "Incoloy/Stainless Steel sheath", "Flanged or screw-in options"], 
+    },
+    // New Electrical & Instrumentation
+    {
+        id: "elec-6",
+        name: "High-Pressure Instrumentation Fittings",
+        category: "Electrical & Instrumentation",
+        type: "Process Connections",
+        image: "https://imgur.com/fILoxc1.png", // Placeholder image
+        description: "Precision-machined fittings (ferrule, compression, NPT) used to connect process control and measurement instruments to piping systems under extreme pressure and temperature.",
+        specs: ["316 Stainless Steel", "Rated up to 20,000 PSI", "Double ferrule design for high integrity"],
+    },   {
+                id: "elec-7",
                 name: "Digital Process Controller",
                 category: "Electrical & Instrumentation",
                 type: "Instrumentation Equipment",
@@ -671,7 +791,7 @@
                 specs: ["PID Control", "Universal Input", "IP65 Front Panel"],
             },
             {
-                id: "elec-2",
+                id: "elec-8",
                 name: "Electromagnetic Flow Meter",
                 category: "Electrical & Instrumentation",
                 type: "Flow Measurement",
@@ -680,7 +800,7 @@
                 specs: ["High Accuracy (±0.5%)", "Liner Materials (PTFE/PFA)", "Bi-directional Measurement"],
             },
             {
-                id: "elec-3",
+                id: "elec-9",
                 name: "Industrial Ethernet Switch",
                 category: "Electrical & Instrumentation",
                 type: "Communication Equipment",
@@ -688,27 +808,18 @@
                 description: "Rugged, managed network switch designed to provide reliable, high-speed data communication in harsh industrial environments with extreme temperatures and vibration. Industries Used Manufacturing Automation, Oil & Gas, Transportation Systems.",
                 specs: ["DIN Rail Mount", "IP30 Rated Housing", "Managed Layer 2"],
             },
-            {
-                id: "elec-4",
-                name: "Submersible Pressure Transmitter",
-                category: "Electrical & Instrumentation",
-                type: "Level/Pressure Measurement",
-                image: "https://imgur.com/rPRSiVE.jpg",
-                description: "A sensor specifically designed to be submerged in a liquid (like a well or tank) to continuously measure the liquid level by sensing hydrostatic pressure. Industries Used Water & Wastewater Management, Environmental Monitoring, Blaqink Holdingscess Control.",
-                specs: ["Stainless Steel Housing", "Vented Cable", "4-20mA Output"],
-            },{
-                id: "elec-5",
-                name: "Heating Elements",
-                category: "Electrical & Instrumentation",
-                type: "Level/Pressure Measurement",
-                image: "https://imgur.com/ZGtP6sO.jpg",
-                description: "Devices that convert electrical energy into heat (thermal energy) through the principle of electrical resistance (Joule heating). They are essential for industrial processes that require precise, controlled temperature application, such as melting, drying, curing, or fluid heating. Common types include tubular (immersion), cartridge, band, and finned elements.",
-                specs: ["Voltage (AC/DC Supply in V)", "Termination Type (Threaded Studs, Lead Wires, Terminal Box)", "Wattage (Power Output in W/kW)"],
-            },
 
-            // 8. Measuring & Testing
-            {
-                id: "meas-1",
+    // 7. Measuring & Testing 
+    { 
+        id: "test-1", 
+        name: "Pressure Calibrator (Handheld)", 
+        category: "Measuring & Testing", 
+        type: "Calibration Tools", 
+        image: "https://imgur.com/n5XLt6H.jpg", 
+        description: "A portable, high-accuracy device used to generate, simulate, and measure pressure, which is essential to verify the performance of pressure sensors, transmitters, gauges, and safety relief valves in process systems. Industries Used Water & Wastewater Management, Environmental Monitoring, Process Control.", 
+        specs: ["0.025% of Reading Accuracy", "Internal Pressure Pump", "HART Communication"], 
+    },  {
+                id: "meas-2",
                 name: "Laser Distance Meter",
                 category: "Measuring & Testing",
                 type: "Measuring Equipment",
@@ -717,7 +828,7 @@
                 specs: ["±1.5mm Accuracy", "Bluetooth Connect", "IP54 Dust/Splash Protection"],
             },
             {
-                id: "meas-2",
+                id: "meas-3",
                 name: "Industrial Digital Multimeter (DMM)",
                 category: "Measuring & Testing",
                 type: "Electrical Testing",
@@ -726,7 +837,7 @@
                 specs: ["True-RMS AC/DC", "CAT III 1000V Safety Rating", "Temperature Measurement"],
             },
             {
-                id: "meas-3",
+                id: "meas-4",
                 name: "Vibration Analyzer",
                 category: "Measuring & Testing",
                 type: "Condition Monitoring",
@@ -735,7 +846,7 @@
                 specs: ["FFT Spectrum Analysis", "ISO 10816 Compliance", "Velocity/Acceleration Modes"],
             },
             {
-                id: "meas-4",
+                id: "meas-5",
                 name: "Portable Pressure Calibrator",
                 category: "Measuring & Testing",
                 type: "Calibration Tools",
@@ -744,52 +855,111 @@
                 specs: ["0.025% of Reading Accuracy", "Internal Pressure Pump", "HART Communication"],
             },
 
-            // 9. Fittings & Tubing
-            {
-                id: "fit-1",
-                name: "Push-to-Connect Fittings",
-                category: "Fittings & Tubing",
-                type: "Pneumatic Fittings",
-                image: "https://imgur.com/aEUgjYN.jpg",
-                description: "Quick-release fittings used in pneumatic systems to connect nylon, polyurethane, or polyethylene tubing without tools. Ensures a secure, leak-free connection. Industries Used Factory Automation, Robotics, Automotive.",
-                specs: ["Brass/Polymer Body", "Max 150 PSI", "Tube sizes 4mm to 16mm"],
-            },
-            {
-                id: "fit-2",
-                name: "Stainless Steel Flanges (Weld Neck)",
-                category: "Fittings & Tubing",
-                type: "Pipe Connections",
-                image: "https://imgur.com/DfETe4Z.jpg",
-                description: "Used to connect pipes to valves, pumps, or other equipment. The long tapered hub allows for optimal strength and stress distribution through welding. Industries Used Oil & Gas, Chemical Processing, Power Generation.",
-                specs: ["ANSI B16.5 Standard", "316 Stainless Steel", "Pressure Class 150 to 2500"],
-            },
-            {
-                id: "fit-3",
-                name: "High-Pressure Hydraulic Hose",
-                category: "Fittings & Tubing",
-                type: "Tubing & Hose",
-                image: "https://imgur.com/Zd6LME1.jpg",
-                description: "Multi-layer reinforced hose designed to convey high-pressure hydraulic fluid in heavy machinery and presses, offering high resistance to abrasion and flexing. Industries Used Heavy Construction, Mining, Injection Molding.",
-                specs: ["SAE 100R2 Standard", "Synthetic Rubber", "Max 400 Bar Working Pressure"],
-            },
-            {
-                id: "fit-4",
-                name: "Threaded Nipple & Couplings (Black Iron)",
-                category: "Fittings & Tubing",
-                type: "Threaded Components",
-                image: "https://imgur.com/A6jiQJ8.jpg",
-                description: "Short piece of pipe (nipple) and connector (coupling) used to extend or join two pipe sections, typically for gas or low-pressure steam/water lines. Industries Used Plumbing, Fire Protection, Utilities.",
-                specs: ["ASTM A53/A106 Grade B Steel", "NPT Threaded Ends", "Schedule 40"],
-            },  {
-                id: "fit-5",
-                name: "Threaded Nipple & Couplings (Black Iron)",
-                category: "Fittings & Tubing",
-                type: "Threaded Components",
-                image: "https://imgur.com/YLjPbrj.jpg",
-                description: "The piston seal manufactured to meet the needs of earth moving equipment where operating conditions such as severe vibration, shock and high pressure are present. Industries Used Plumbing, Fire Protection, Utilities.",
-                specs: ["Pressure: = 700 bar", "Speed: = 0.5 m/s", "Temperature: -30°c + 110°c"],
-            },
-        ];
+    // 8. Fittings & Tubing 
+    { 
+        id: "fit-1", 
+        name: "Push-to-Connect Fittings", 
+        category: "Fittings & Tubing", 
+        type: "Pneumatic Fittings", 
+        image: "https://imgur.com/aEUgjYN.jpg", 
+        description: "Quick-release fittings used in pneumatic systems to connect nylon, polyurethane, or polyethylene tubing without tools. Ensures a secure, leak-free connection. Industries Used Factory Automation, Robotics, Automotive.", 
+        specs: ["Brass/Polymer Body", "Max 150 PSI", "Tube sizes 4mm to 16mm"], 
+    }, 
+    { 
+        id: "fit-2", 
+        name: "Stainless Steel Flanges", 
+        category: "Fittings & Tubing", 
+        type: "Pipe Fittings", 
+        image: "https://imgur.com/jZE3bBM.png", 
+        description: "Weld neck flanges made from 316 stainless steel, used to join pipes, valves, and equipment in corrosive, high-temperature, or hygienic environments.", 
+        specs: ["ASME B16.5 Standard", "316 Stainless Steel", "Pressure Class 150# to 600#"], 
+    },
+    // New Fittings & Tubing
+    {
+        id: "fit-3",
+        name: "Steel and Brass Adaptors/Fittings",
+        category: "Fittings & Tubing",
+        type: "Industrial Fittings",
+        image: "https://imgur.com/jkczpDV.png", // Placeholder image
+        description: "Standard adaptors, couplings, elbows, and tees made from carbon steel and high-grade brass for connecting pipes, hoses, and equipment in general industrial applications.",
+        specs: ["NPT and BSP thread standards", "Galvanized or plain steel", "Forged brass"],
+    },
+    {
+        id: "fit-4",
+        name: "Stainless Steel Adaptors (Low & High Pressure)",
+        category: "Fittings & Tubing",
+        type: "Industrial Fittings",
+        image: "https://imgur.com/OZrkrWh.png", // Placeholder image
+        description: "Corrosion-resistant fittings and adaptors from 304/316 stainless steel for chemical, food & beverage, and high-pressure hydraulic systems.",
+        specs: ["316 Stainless Steel", "Rated up to 6,000 PSI", "Precision-machined threads"],
+    },
+    {
+        id: "fit-5",
+        name: "Airbrake System Fittings",
+        category: "Fittings & Tubing",
+        type: "Airbrake Systems",
+        image: "https://imgur.com/h4GJZEV.png", // Placeholder image
+        description: "Specialized push-in and compression fittings for connecting nylon airbrake tubing in commercial vehicle and heavy machinery pneumatic braking systems.",
+        specs: ["DOT/SAE compliant", "High vibration resistance", "Corrosion-resistant brass"],
+    },
+    {
+        id: "fit-6",
+        name: "Airline Hoses and Fittings",
+        category: "Fittings & Tubing",
+        type: "Hosing Systems",
+        image: "https://imgur.com/KRlZFUJ.png", // Placeholder image
+        description: "Flexible, abrasion-resistant hose and coupling assemblies for general shop air, including PVC, rubber, and recoil hoses with quick-connect fittings.",
+        specs: ["Max Pressure: 300 PSI", "Abrasion and oil resistant cover", "Standard NPT end connections"],
+    },
+    {
+        id: "fit-7",
+        name: "Bundy and Copper Tubing",
+        category: "Fittings & Tubing",
+        type: "Tubing",
+        image: "https://imgur.com/klw6LeS.png", // Placeholder image
+        description: "Seamless, double-walled steel Bundy tubing (low carbon) and soft copper tubing, commonly used for high-pressure brake lines, fuel lines, and refrigeration.",
+        specs: ["OD sizes 3/16'' to 1/2''", "Corrosion-resistant coating (Bundy)", "ASTM B75 copper"],
+    },
+    {
+        id: "fit-8",
+        name: "Nylon Tubing and Push-Lok Hose",
+        category: "Fittings & Tubing",
+        type: "Tubing",
+        image: "https://imgur.com/EWP5NeT.png", // Placeholder image
+        description: "Flexible, lightweight nylon tubing for pneumatic and low-pressure hydraulic applications, alongside Push-Lok hose for quick, clamp-free assembly.",
+        specs: ["High pressure and temp rating (Nylon)", "Excellent chemical resistance", "Colour-coded options"],
+    },
+    {
+        id: "fit-9",
+        name: "PVC Industrial Hose",
+        category: "Fittings & Tubing",
+        type: "Hosing Systems",
+        image: "https://imgur.com/sJrNlKP.png", // Placeholder image
+        description: "Reinforced PVC hose for handling water, air, and various chemicals, offering excellent flexibility and visibility for low-to-medium pressure transfer applications.",
+        specs: ["Clear or opaque reinforced PVC", "Working Pressure: up to 150 PSI", "Food-grade options available"],
+    },
+    {
+        id: "fit-10",
+        name: "Steel Tube and Tube Fittings (Compression)",
+        category: "Fittings & Tubing",
+        type: "Industrial Fittings",
+        image: "https://imgur.com/CYQL66p.png", // Placeholder image
+        description: "Seamless cold-drawn steel hydraulic tubing and corresponding compression fittings for rigid hydraulic circuits requiring high integrity and resistance to vibration.",
+        specs: ["St37.4/E355 Grade Steel", "Metric OD sizing", "High-pressure single and double ferrule fittings"],
+    },
+    
+    // 9. Services
+    {
+        id: "serv-1",
+        name: "Specials Manufactured to Customer Specifications",
+        category: "Services",
+        type: "Custom Supply",
+        image: "https://imgur.com/NuZRxrw.png", // Placeholder image
+        description: "Bespoke engineering, sourcing, and manufacturing services for specialized industrial components, assemblies, or equipment that are not available off-the-shelf.",
+        specs: ["CAD/CAM integration", "Material certification and testing", "Rapid prototyping and production runs"],
+    },
+];
+
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
