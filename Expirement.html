@@ -8,6 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Custom CSS -->
     <style>
         :root {
@@ -23,6 +29,39 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--foreground-color);
             background-color: var(--background-color);
+        }
+
+        /* Typing Effect Styles */
+        .typing-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+            margin: 20px 0;
+        }
+
+        .text-type {
+            display: inline-block;
+            white-space: pre-wrap;
+            font-family: "Stack Sans Headline", sans-serif;
+            font-size: 36px;
+            min-height: 1.2em;
+            color: white;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .text-type__cursor {
+            margin-left: 0.25rem;
+            display: inline-block;
+            opacity: 1;
+            color: white;
+            font-weight: 700;
+        }
+
+        .text-type__cursor--hidden {
+            display: none;
         }
 
         .hero-section {
@@ -492,6 +531,10 @@
             .client-item {
                 width: 120px;
             }
+            
+            .text-type {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -549,13 +592,11 @@
         <!-- Hero Content -->
         <div class="hero-content d-flex align-items-center justify-content-center h-100">
             <div>
-                <h1 class="hero-title">Blaqink Holdings</h1>
-                <p class="hero-subtitle">We aim to be
-the leading
-supplier of mining
-equipment in
-South Africa and
-beyond.</p>
+                <h1 class="hero-title">BLAQINK Industrial Solutions  </h1>
+                <!-- Typing Effect Container -->
+                <div class="typing-container">
+                    <div id="text-type-container" class="text-type"></div>
+                </div>
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
                     <a href="#" class="btn btn-accent d-inline-flex align-items-center gap-2">
                         Browse Products <i class="bi bi-arrow-right"></i>
@@ -677,8 +718,6 @@ beyond.</p>
                         </div>
                     </div>
                     
-                   
-                    
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="product-card">
                             <img src="https://imgur.com/fQ956aF.jpg" alt="Electrical & Industrial" class="product-card-bg">
@@ -753,8 +792,6 @@ beyond.</p>
             </div>
         </div>
     </section>
-
-    
 
     <!-- Clients Section -->
     <section class="section-padding">
@@ -853,8 +890,6 @@ beyond.</p>
                         </div>
                         <p class="client-name">SCHNEIDER</p>
                     </div>
-                    
-                    
                 </div>
             </div>
             
@@ -923,6 +958,225 @@ beyond.</p>
     
     <!-- Custom JavaScript -->
     <script>
+        // Typing Effect Class
+        class TextType {
+            constructor(options) {
+                // Default options
+                this.options = {
+                    text: ["Welcome to BLAQINK Industrial Solutions", " your trusted partner in advanced industrial equipment and supply excellence.", "Experience innovative, dependable industrial solutions"],
+                    typingSpeed: 75,
+                    initialDelay: 0,
+                    pauseDuration: 1500,
+                    deletingSpeed: 30,
+                    loop: true,
+                    className: '',
+                    showCursor: true,
+                    hideCursorWhileTyping: false,
+                    cursorCharacter: '|',
+                    cursorClassName: '',
+                    cursorBlinkDuration: 0.5,
+                    textColors: [],
+                    variableSpeed: null,
+                    onSentenceComplete: null,
+                    startOnVisible: false,
+                    reverseMode: false,
+                    ...options
+                };
+
+                // State variables
+                this.displayedText = '';
+                this.currentCharIndex = 0;
+                this.isDeleting = false;
+                this.currentTextIndex = 0;
+                this.isVisible = !this.options.startOnVisible;
+                this.isPaused = false;
+                this.timeoutId = null;
+
+                // Create DOM elements
+                this.container = document.getElementById('text-type-container');
+                if (!this.container) {
+                    console.error('Container element not found');
+                    return;
+                }
+
+                // Add className if provided
+                if (this.options.className) {
+                    this.container.classList.add(this.options.className);
+                }
+
+                // Create content span
+                this.contentSpan = document.createElement('span');
+                this.contentSpan.className = 'text-type__content';
+                this.container.appendChild(this.contentSpan);
+
+                // Create cursor if needed
+                if (this.options.showCursor) {
+                    this.cursorSpan = document.createElement('span');
+                    this.cursorSpan.className = `text-type__cursor ${this.options.cursorClassName}`;
+                    this.cursorSpan.textContent = this.options.cursorCharacter;
+                    this.container.appendChild(this.cursorSpan);
+                    
+                    // Set up cursor blinking animation
+                    this.setupCursorBlink();
+                }
+
+                // Start the animation
+                this.init();
+            }
+
+            init() {
+                // Set up Intersection Observer if startOnVisible is true
+                if (this.options.startOnVisible) {
+                    const observer = new IntersectionObserver(
+                        entries => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    this.isVisible = true;
+                                    this.startAnimation();
+                                    observer.unobserve(this.container);
+                                }
+                            });
+                        },
+                        { threshold: 0.1 }
+                    );
+                    observer.observe(this.container);
+                } else {
+                    this.startAnimation();
+                }
+            }
+
+            setupCursorBlink() {
+                if (!this.cursorSpan) return;
+                
+                gsap.set(this.cursorSpan, { opacity: 1 });
+                gsap.to(this.cursorSpan, {
+                    opacity: 0,
+                    duration: this.options.cursorBlinkDuration,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'power2.inOut'
+                });
+            }
+
+            startAnimation() {
+                if (!this.isVisible || this.isPaused) return;
+
+                this.clearTimeout();
+                
+                const currentText = this.options.text[this.currentTextIndex];
+                const processedText = this.options.reverseMode 
+                    ? currentText.split('').reverse().join('') 
+                    : currentText;
+
+                if (this.isDeleting) {
+                    if (this.displayedText === '') {
+                        this.isDeleting = false;
+                        
+                        if (this.currentTextIndex === this.options.text.length - 1 && !this.options.loop) {
+                            return;
+                        }
+
+                        if (this.options.onSentenceComplete) {
+                            this.options.onSentenceComplete(
+                                this.options.text[this.currentTextIndex], 
+                                this.currentTextIndex
+                            );
+                        }
+
+                        this.currentTextIndex = (this.currentTextIndex + 1) % this.options.text.length;
+                        this.currentCharIndex = 0;
+                        
+                        this.timeoutId = setTimeout(() => {
+                            this.startAnimation();
+                        }, this.options.pauseDuration);
+                    } else {
+                        this.timeoutId = setTimeout(() => {
+                            this.displayedText = this.displayedText.slice(0, -1);
+                            this.updateDisplay();
+                            this.startAnimation();
+                        }, this.options.deletingSpeed);
+                    }
+                } else {
+                    if (this.currentCharIndex < processedText.length) {
+                        const speed = this.options.variableSpeed 
+                            ? this.getRandomSpeed() 
+                            : this.options.typingSpeed;
+                            
+                        this.timeoutId = setTimeout(() => {
+                            this.displayedText += processedText[this.currentCharIndex];
+                            this.currentCharIndex++;
+                            this.updateDisplay();
+                            this.startAnimation();
+                        }, speed);
+                    } else if (this.options.text.length >= 1) {
+                        if (!this.options.loop && this.currentTextIndex === this.options.text.length - 1) {
+                            return;
+                        }
+                        
+                        this.timeoutId = setTimeout(() => {
+                            this.isDeleting = true;
+                            this.startAnimation();
+                        }, this.options.pauseDuration);
+                    }
+                }
+            }
+
+            getRandomSpeed() {
+                if (!this.options.variableSpeed) return this.options.typingSpeed;
+                const { min, max } = this.options.variableSpeed;
+                return Math.random() * (max - min) + min;
+            }
+
+            updateDisplay() {
+                // Update the displayed text
+                this.contentSpan.textContent = this.displayedText;
+                
+                // Update text color if specified
+                if (this.options.textColors.length > 0) {
+                    const color = this.options.textColors[this.currentTextIndex % this.options.textColors.length];
+                    this.contentSpan.style.color = color;
+                } else {
+                    // Use default color (white)
+                    this.contentSpan.style.color = 'white';
+                }
+                
+                // Handle cursor visibility
+                if (this.cursorSpan && this.options.hideCursorWhileTyping) {
+                    const shouldHide = this.currentCharIndex < this.options.text[this.currentTextIndex].length || this.isDeleting;
+                    this.cursorSpan.classList.toggle('text-type__cursor--hidden', shouldHide);
+                }
+            }
+
+            clearTimeout() {
+                if (this.timeoutId) {
+                    clearTimeout(this.timeoutId);
+                    this.timeoutId = null;
+                }
+            }
+
+            pause() {
+                this.isPaused = true;
+                this.clearTimeout();
+            }
+
+            resume() {
+                if (this.isPaused) {
+                    this.isPaused = false;
+                    this.startAnimation();
+                }
+            }
+
+            restart() {
+                this.pause();
+                this.displayedText = '';
+                this.currentCharIndex = 0;
+                this.isDeleting = false;
+                this.currentTextIndex = 0;
+                this.updateDisplay();
+                this.resume();
+            }
+        }
+
         // Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
@@ -966,6 +1220,17 @@ beyond.</p>
         
         navbarToggler.addEventListener('click', () => {
             navbarNav.classList.toggle('show');
+        });
+
+        // Initialize the typing effect when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const textType = new TextType({
+                text: ["Welcome To", " BLAQINK Industrial Solutions", "Pleasure meeting you !"],
+                typingSpeed: 75,
+                pauseDuration: 1500,
+                showCursor: true,
+                cursorCharacter: "|"
+            });
         });
     </script>
 </body>
