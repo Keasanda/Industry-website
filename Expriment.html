@@ -204,6 +204,95 @@
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
         }
 
+        /* Gradient Background Section */
+        .gradient-section {
+            background: linear-gradient(135deg, #0065F8 0%, #00CAFF 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 101, 248, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .gradient-section .section-title {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gradient-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* GIF Showcase Section */
+        .gif-showcase-section {
+            padding: 60px 0;
+        }
+
+        .gif-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .gif-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gif-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gif-card:hover .gif-container img {
+            transform: scale(1.05);
+        }
+
+        .gif-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .gif-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .gif-description {
+            color: var(--muted-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         /* Rest of your CSS remains the same */
         .section-padding {
             padding: 80px 0;
@@ -549,6 +638,15 @@
             .client-item {
                 width: 120px;
             }
+
+            .gradient-section {
+                padding: 40px 20px;
+                margin: 20px auto;
+            }
+
+            .gif-container {
+                height: 200px;
+            }
         }
 
         /* Animation for elements on scroll */
@@ -561,6 +659,89 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Your existing CSS remains the same, adding new animation styles below */
+        
+        /* Split Text Animation Styles */
+        .split-parent {
+            overflow: hidden;
+            display: inline-block;
+            white-space: normal;
+            word-wrap: break-word;
+            will-change: transform, opacity;
+        }
+        
+        .split-char, .split-word, .split-line {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        /* Text Type Animation Styles */
+        .text-type {
+            display: inline-block;
+            white-space: pre-wrap;
+        }
+        
+        .text-type__cursor {
+            margin-left: 0.25rem;
+            display: inline-block;
+            opacity: 1;
+            animation: cursorBlink 0.5s infinite alternate;
+        }
+        
+        .text-type__cursor--hidden {
+            display: none;
+        }
+        
+        @keyframes cursorBlink {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        /* Hero Section Updates */
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .welcome-text {
+            font-size: clamp(1.5rem, 3vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        /* Rest of your existing CSS remains unchanged */
+        :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #d4af37;
+            --background-color: #f8f9fa;
+            --foreground-color: #1f2937;
+            --border-color: #e5e7eb;
+            --muted-color: #6b7280;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--foreground-color);
+            background-color: var(--background-color);
+        }
+
+        /* Your existing navbar, hero, and other styles remain exactly the same */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 10px 0;
         }
     </style>
 </head>
@@ -597,52 +778,119 @@
         </div>
     </nav>
 
-    <!-- Hero Section with GIF Background -->
-    <section class="hero-section">
-        <!-- GIF Background -->
-        <div class="gif-background">
-            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3R4YzZybTdoaHBwaTNldHAwZjkxMnlpOHFkZDA5djdhZDFyemUwZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EjXqs868ZTFzhqpKhW/giphy.gif" 
-                 alt="Industrial background animation">
-        </div>
-        
-        <!-- Overlay for better text readability -->
-        <div class="hero-overlay"></div>
+   <!-- Hero Section with GIF Background -->
+<section class="hero-section">
+    <!-- GIF Background -->
+    <div class="gif-background">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3R4YzZybTdoaHBwaTNldHAwZjkxMnlpOHFkZDA5djdhZDFyemUwZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EjXqs868ZTFzhqpKhW/giphy.gif" 
+             alt="Industrial background animation">
+    </div>
+    
+    <!-- Overlay for better text readability -->
+    <div class="hero-overlay"></div>
 
-        <!-- Hero Content -->
-        <div class="hero-content d-flex align-items-center justify-content-center h-100">
-            <div>
-                
-                <p class="hero-subtitle">We aim to be
+    <!-- Hero Content -->
+    <div class="hero-content d-flex align-items-center justify-content-center h-100">
+        <div class="text-center">
+            <!-- Welcome Text -->
+            <div class="welcome-text mb-2" id="welcome-text"></div>
+            
+            <!-- Company Name with Typing Animation -->
+            <h1 class="hero-title mb-3" id="company-name-typing"></h1>
+            
+            <!-- Static Subtitle -->
+            <p class="hero-subtitle mb-4">We aim to be
 the leading
 supplier of mining
 equipment in
 South Africa and
 beyond.</p>
-                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                    <a href="products.html" class="btn btn-accent d-inline-flex align-items-center gap-2">
-                        Browse Products <i class="bi bi-arrow-right"></i>
-                    </a>
-                    <a href="contact.html" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
-                        Get Quote
-                    </a>
-                </div>
+            
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                <a href="products.html" class="btn btn-accent d-inline-flex align-items-center gap-2">
+                    Browse Products <i class="bi bi-arrow-right"></i>
+                </a>
+                <a href="contact.html" class="btn btn-outline-light d-inline-flex align-items-center gap-2">
+                    Get Quote
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Why Choose Section -->
     <section class="section-padding">
         <div class="container">
-            <div class="text-center mb-5 fade-in">
-                <h2 class="section-title">Why Choose Blaqink Holdings?</h2>
-                <p class="section-subtitle">
-                    Blaqink Holdings is a dynamic, ambitious multi-disciplinary entity. The company is a
-                    Level 1 BBBEE that has robust relationships with some of the best industry experts with an
-                    aim of attracting more and best talent in all its spheres of operation in its pursuit of excellence.
-                    Blaqink Holdings is the exclusive sales partner for Bundor Valves and AirTOP Pneumatic
-                    equipment in South Africa. We are official distributors of Festo Pneumatic and Cromwell
-                    Tools and many other top component brands in the industry.
-                </p>
+            <!-- Gradient Background Container -->
+            <div class="gradient-section fade-in">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Why Choose Blaqink Holdings?</h2>
+                    <p class="section-subtitle">
+                        Blaqink Holdings is a dynamic, ambitious multi-disciplinary entity. The company is a
+                        Level 1 BBBEE that has robust relationships with some of the best industry experts with an
+                        aim of attracting more and best talent in all its spheres of operation in its pursuit of excellence.
+                        Blaqink Holdings is the exclusive sales partner for Bundor Valves and AirTOP Pneumatic
+                        equipment in South Africa. We are official distributors of Festo Pneumatic and Cromwell
+                        Tools and many other top component brands in the industry.
+                    </p>
+                </div>
+            </div>
+
+            <!-- GIF Showcase Section -->
+            <div class="gif-showcase-section">
+                <div class="text-center mb-5 fade-in">
+                    <h2 class="section-title">Our Industrial Expertise</h2>
+                    <p class="section-subtitle">
+                        Cutting-edge solutions for modern industrial challenges
+                    </p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4 fade-in">
+                        <div class="gif-card">
+                            <div class="gif-container">
+                                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDB0djBudXIwMzhrMXBzMWFpbDl1bDYxNDNjZW1pbGdrdnhoeWxvYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EE9p6E0aLyBWkYc0Fo/giphy.gif" 
+                                     alt="Advanced Manufacturing">
+                            </div>
+                            <div class="gif-content">
+                                <h3 class="gif-title">Advanced Manufacturing</h3>
+                                <p class="gif-description">
+                                    State-of-the-art manufacturing processes and precision engineering for superior quality products.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4 fade-in">
+                        <div class="gif-card">
+                            <div class="gif-container">
+                                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmpsbHBsd2I2bTN0anBkcjE1YWF2eWNjY2V0YzJrZXQ3emxsajM3dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QVfiMY6SwBjCFjqBXy/giphy.gif" 
+                                     alt="Industrial Automation">
+                            </div>
+                            <div class="gif-content">
+                                <h3 class="gif-title">Industrial Automation</h3>
+                                <p class="gif-description">
+                                    Smart automation solutions that enhance efficiency and productivity in industrial operations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4 fade-in">
+                        <div class="gif-card">
+                            <div class="gif-container">
+                                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnJkZHIzOWtxanV3ZzMxdmQweWo5dm1zempvbWJrcW9tNmZtNWp0cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CyLRw2FbFbiaGsAyeS/giphy.gif" 
+                                     alt="Mining Technology">
+                            </div>
+                            <div class="gif-content">
+                                <h3 class="gif-title">Mining Technology</h3>
+                                <p class="gif-description">
+                                    Innovative mining equipment and technologies for safer and more efficient resource extraction.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Product Services Section -->
@@ -967,38 +1215,175 @@ beyond.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Rest of your HTML content remains exactly the same -->
+
+   // Custom JavaScript with Typing Animation
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Fade-in animation on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
     
-    <!-- Custom JavaScript -->
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+    const fadeInOnScroll = () => {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('visible');
             }
         });
+    };
+    
+    // Check on load and scroll
+    window.addEventListener('scroll', fadeInOnScroll);
+    window.addEventListener('load', fadeInOnScroll);
 
-        // Fade-in animation on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
+    // Simple Typing Animation Class
+    class TextTypeAnimation {
+        constructor(element, options = {}) {
+            this.element = element;
+            this.text = Array.isArray(options.text) ? options.text : [options.text || ''];
+            this.typingSpeed = options.typingSpeed || 100;
+            this.deletingSpeed = options.deletingSpeed || 50;
+            this.pauseDuration = options.pauseDuration || 2000;
+            this.loop = options.loop !== undefined ? options.loop : true;
+            this.showCursor = options.showCursor !== undefined ? options.showCursor : true;
+            this.cursorCharacter = options.cursorCharacter || '|';
+            
+            this.currentTextIndex = 0;
+            this.currentCharIndex = 0;
+            this.isDeleting = false;
+            this.typingTimeout = null;
+            
+            this.init();
+        }
         
-        const fadeInOnScroll = () => {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+        init() {
+            if (!this.element) return;
+            
+            // Create cursor element
+            if (this.showCursor) {
+                this.cursorElement = document.createElement('span');
+                this.cursorElement.className = 'typing-cursor';
+                this.cursorElement.textContent = this.cursorCharacter;
+                this.cursorElement.style.marginLeft = '2px';
+                this.cursorElement.style.animation = 'cursorBlink 1s infinite';
+                this.element.parentNode.insertBefore(this.cursorElement, this.element.nextSibling);
+            }
+            
+            this.startTyping();
+        }
+        
+        startTyping() {
+            const currentText = this.text[this.currentTextIndex];
+            
+            if (this.isDeleting) {
+                // Deleting text
+                this.element.textContent = currentText.substring(0, this.currentCharIndex - 1);
+                this.currentCharIndex--;
                 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
+                if (this.currentCharIndex === 0) {
+                    this.isDeleting = false;
+                    this.currentTextIndex = (this.currentTextIndex + 1) % this.text.length;
+                    this.typingTimeout = setTimeout(() => this.startTyping(), this.pauseDuration);
+                } else {
+                    this.typingTimeout = setTimeout(() => this.startTyping(), this.deletingSpeed);
                 }
-            });
-        };
+            } else {
+                // Typing text
+                this.element.textContent = currentText.substring(0, this.currentCharIndex + 1);
+                this.currentCharIndex++;
+                
+                if (this.currentCharIndex === currentText.length) {
+                    if (this.text.length > 1 || this.loop) {
+                        this.isDeleting = true;
+                        this.typingTimeout = setTimeout(() => this.startTyping(), this.pauseDuration);
+                    }
+                } else {
+                    this.typingTimeout = setTimeout(() => this.startTyping(), this.typingSpeed);
+                }
+            }
+        }
         
-        // Check on load and scroll
-        window.addEventListener('scroll', fadeInOnScroll);
-        window.addEventListener('load', fadeInOnScroll);
-    </script>
+        destroy() {
+            if (this.typingTimeout) {
+                clearTimeout(this.typingTimeout);
+            }
+            if (this.cursorElement) {
+                this.cursorElement.remove();
+            }
+        }
+    }
+
+    // Initialize animations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Welcome text typing animation
+        const welcomeText = new TextTypeAnimation(
+            document.getElementById('welcome-text'),
+            {
+                text: ["Welcome to"],
+                typingSpeed: 100,
+                pauseDuration: 5000,
+                loop: false,
+                showCursor: false
+            }
+        );
+        
+        // Company name typing animation
+        const companyName = new TextTypeAnimation(
+            document.getElementById('company-name-typing'),
+            {
+                text: ["BLAQINK INDUSTRRIAL SOLUTIONS"],
+                typingSpeed: 75,
+                pauseDuration: 3000,
+                loop: false,
+                showCursor: true,
+                cursorCharacter: "|"
+            }
+        );
+
+        // Alternative: Multiple text rotation (uncomment to use)
+        /*
+        const rotatingText = new TextTypeAnimation(
+            document.getElementById('company-name-typing'),
+            {
+                text: [
+                    "Blaqink Holdings",
+                    "Industrial Solutions",
+                    "Mining Equipment"
+                ],
+                typingSpeed: 75,
+                deletingSpeed: 40,
+                pauseDuration: 1500,
+                loop: true,
+                showCursor: true
+            }
+        );
+        */
+    });
+
+    // Add cursor blink animation to CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .typing-cursor {
+            animation: cursorBlink 1s infinite;
+            font-weight: bold;
+        }
+    `;
+    document.head.appendChild(style);
+</script>
 </body>
 </html>
