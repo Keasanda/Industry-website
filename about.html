@@ -287,10 +287,16 @@
             color: rgba(31, 41, 55, 0.8);
         }
 
-        .ceo-section {
-            background-color: var(--primary-color);
+        /* Gradient Background Section */
+        .gradient-section {
+            background: linear-gradient(135deg, #0065F8 0%, #00CAFF 100%);
             color: white;
-            padding: 80px 0;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 101, 248, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .ceo-title {
@@ -399,6 +405,11 @@
             .company-title, .industries-title, .section-title, .values-title {
                 font-size: 1.75rem;
             }
+            
+            .gradient-section {
+                padding: 40px 20px;
+                margin: 20px auto;
+            }
         }
     </style>
 </head>
@@ -408,7 +419,7 @@
         <div class="container">
           <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img src="https://imgur.com/xG9zsZJ.png" 
-             alt="Blaqink Holdings Logo" 
+             alt="Blaqink Industrial SolutionsLogo" 
              style="width: 8em; height: 7rem;">
     </a>
             
@@ -459,12 +470,12 @@
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <h2 class="company-title">Our Company</h2>
                     <p class="company-text">
-                        Blaqink Holdings is a dynamic, ambitious multi-disciplinary entity. The company is a Level 1 BBBEE that
+                        Blaqink Industrial Solutionsis a dynamic, ambitious multi-disciplinary entity. The company is a Level 1 BBBEE that
                         has robust relationships with some of the best industry experts with an aim of attracting more and best
                         talent in all its spheres of operation in its pursuit of excellence.
                     </p>
                     <p class="company-text">
-                        Blaqink Holdings is the exclusive sales partner for Bundor Valves and AirTOP Pneumatic equipment in
+                        Blaqink Industrial Solutionsis the exclusive sales partner for Bundor Valves and AirTOP Pneumatic equipment in
                         South Africa. We are official distributors of Festo Pneumatic and Cromwell Tools and many other top
                         component brands in the industry.
                     </p>
@@ -506,7 +517,7 @@
                 
                 <div class="col-md-4 mb-4">
                     <div class="industry-card">
-                        <img src="https://imgur.com/nIJ8Amq.jpg" alt="Mining Industry" class="industry-image">
+                        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGNtZnl5d3VsbWxqcWFxaW55dGpvcGo1Nm0zaml6eWY0dWNweHBrNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hjfuMvVtpGm33e63aN/giphy.gif" alt="Mining Industry" class="industry-image">
                         <div class="industry-overlay">
                             <div class="industry-content">
                                 <h4 class="industry-name">Mining Solutions</h4>
@@ -518,7 +529,7 @@
                 
                 <div class="col-md-4 mb-4">
                     <div class="industry-card">
-                        <img src="https://imgur.com/5lKOylS.jpg" alt="Construction Industry" class="industry-image">
+                        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXA1M24za24zZW5jeWYzbXQzY3Rka2l0bnllemh3M3JocTB6M3ZrMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZaN7jIOegrGCPMUa6Z/giphy.gif" alt="Construction Industry" class="industry-image">
                         <div class="industry-overlay">
                             <div class="industry-content">
                                 <h4 class="industry-name">factories</h4>
@@ -530,7 +541,7 @@
                 
                 <div class="col-md-4 mb-4">
                     <div class="industry-card">
-                        <img src="https://imgur.com/OBuM8IN.jpg" alt="Water Treatment Plant" class="industry-image">
+                        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3Qwdm9pa2prcjVnYTlscTU1aTF4OXJtc21odDg4dGcwMTQxN3hvOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12OYRu2xUutFO8/giphy.gif" alt="Water Treatment Plant" class="industry-image">
                         <div class="industry-overlay">
                             <div class="industry-content">
                                 <h4 class="industry-name">Water Treatment</h4>
@@ -541,15 +552,16 @@
                 </div>
             </div>
         </div>
+        
     </section>
-
     <!-- Mission & Vision -->
-    <section class="section-padding mission-vision-section">
-        <div class="container">
-            <h2 class="section-title">Mission & Vision</h2>
+    <section class="section-padding mission-vision-section" style="background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzlydndvbDVxNDhwdGVlcGYyejRxMWN3aGQ3bGx4cDdyMTN6M2c5eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14dYwOtIF2bOVEEA8V/giphy.gif') center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6);"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2 class="section-title" style="color: white;">Mission & Vision</h2>
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="mission-card">
+                    <div class="mission-card" style="background-color: rgba(255, 255, 255, 0.95);">
                         <h3 class="card-title mission-title">Our Mission</h3>
                         <p class="card-text">
                             To gain a more than average market share through effective and efficient designs within the ambit of
@@ -558,7 +570,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="vision-card">
+                    <div class="vision-card" style="background-color: rgba(255, 255, 255, 0.95);">
                         <h3 class="card-title vision-title">Our Vision</h3>
                         <p class="card-text">
                             Our vision is to grow into a dependable multi-disciplined conglomerate trusted by its clients all over
@@ -571,17 +583,19 @@
     </section>
 
     <!-- CEO Statement -->
-    <section class="ceo-section">
+    <section class="section-padding">
         <div class="container">
-            <h2 class="ceo-title">CEO Statement</h2>
-            <div class="ceo-statement">
-                <h3 class="ceo-subtitle">Our Purpose</h3>
-                <p class="ceo-text">
-                    We are committed to providing critical equipment and tools that support mining operations. Our approach
-                    is designed to accelerate positive change while safeguarding the value and stability of our clients'
-                    operations. By offering more efficient and cost-effective solutions, we help our clients better manage
-                    risk and drive long-term success.
-                </p>
+            <div class="gradient-section">
+                <h2 class="ceo-title">CEO Statement</h2>
+                <div class="ceo-statement">
+                    <h3 class="ceo-subtitle">Our Purpose</h3>
+                    <p class="ceo-text">
+                        We are committed to providing critical equipment and tools that support mining operations. Our approach
+                        is designed to accelerate positive change while safeguarding the value and stability of our clients'
+                        operations. By offering more efficient and cost-effective solutions, we help our clients better manage
+                        risk and drive long-term success.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
