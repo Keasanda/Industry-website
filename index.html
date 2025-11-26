@@ -17,6 +17,8 @@
         --foreground-color: #1f2937;
         --border-color: #e5e7eb;
         --muted-color: #6b7280;
+            --belt-speed: 12s; /* adjust speed: smaller = faster */
+    --belt-gap: 28px;
     }
 
     body {
@@ -804,80 +806,101 @@
         line-height: 1.5;
     }
 
-    /* Clients Section */
-    .client-section {
-        overflow: hidden;
-        position: relative;
-        background: linear-gradient(to right, rgba(30, 58, 138, 0.1), transparent, rgba(30, 58, 138, 0.1));
-        border-radius: 12px;
-        border: 1px solid rgba(30, 58, 138, 0.2);
-    }
+    /* Clients Section - Fixed */
+   .clients-wrap {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 18px 0;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
 
-    .conveyor-belt {
-        display: flex;
-        gap: 40px;
-        padding: 30px 20px;
-        animation: scroll-left 25s linear infinite;
-    }
+  /* slide-track is twice as wide visually because it contains 2 identical lists */
+  .slide-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: var(--belt-gap);
+    animation: scroll-left var(--belt-speed) linear infinite;
+    will-change: transform;
+  }
 
-    .conveyor-belt:hover {
-        animation-play-state: paused;
-    }
+  .slide-list {
+    display: flex;
+    gap: var(--belt-gap);
+    align-items: center;
+  }
 
-    @keyframes scroll-left {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-50%);
-        }
-    }
+  .client-item {
+    flex: 0 0 auto;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
 
-    .client-item {
-        flex-shrink: 0;
-        width: 180px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        transition: all 0.3s ease;
-    }
+  .client-logo-container {
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    box-sizing: border-box;
+  }
 
-    .client-item:hover {
-        transform: translateY(-5px);
-    }
+  .client-logo {
+    max-width: 140px;
+    max-height: 76px;
+    object-fit: contain;
+    display:block;
+  }
 
-    .client-logo-container {
-        width: 100%;
-        height: 100px;
-        background-color: white;
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        padding: 15px;
-    }
+  .client-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 0;
+    line-height: 1.1;
+  }
 
-    .client-logo-container:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
+  /* Pause class */
+  .slide-track.paused {
+    animation-play-state: paused !important;
+  }
 
-    .client-logo {
-        max-width: 140px;
-        max-height: 70px;
-        object-fit: contain;
-    }
+  /* Responsive tweaks */
+  @media (max-width: 1024px) {
+    .client-item { width: 150px; }
+    .client-logo-container { height: 86px; }
+    :root { --belt-gap: 22px; }
+  }
 
-    .client-name {
-        font-size: 1rem;
-        font-weight: 600;
-        text-align: center;
-        line-height: 1.2;
-    }
+  @media (max-width: 768px) {
+    :root { --belt-speed: 9s; --belt-gap: 18px; } /* faster on mobile */
+    .client-item { width: 120px; }
+    .client-logo-container { height: 70px; padding: 8px; }
+    .client-logo { max-width: 100px; max-height: 56px; }
+  }
 
+  @media (max-width: 420px) {
+    :root { --belt-speed: 7.5s; }
+    .client-item { width: 110px; }
+    .client-logo-container { height: 64px; }
+  }
+
+  /* Keyframes scroll the whole track by half of its content (because track has 2 identical lists) */
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
     /* CTA Section */
     .cta-section {
         background-color: var(--primary-color);
@@ -1326,108 +1349,144 @@
         </div>
     </div>
 
-   <!-- Clients Section -->
-<section class="section-padding" style="background-color: #000;">
-    <div class="container">
-        <div class="text-center mb-5 fade-in">
-            <h2 class="section-title" style="color: white;">DISTRIBUTORS OF</h2>
-            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">
-                Trusted by leading companies across industries worldwide
-            </p>
+<!-- ====== START: Responsive Seamless Conveyor Belt (drop into your page) ====== -->
+<section id="clients" class="section-padding" style="background-color:#000;">
+  <div class="container">
+    <div class="text-center mb-4 fade-in">
+      <h2 class="section-title" style="color: white; margin-bottom:0.25rem;">DISTRIBUTORS OF</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.9); margin-top:0.25rem;">
+        Trusted by leading companies across industries worldwide
+      </p>
+    </div>
+
+    <!-- Conveyor wrapper -->
+    <div class="clients-wrap" aria-hidden="false">
+      <!-- Slide track contains two identical lists to allow seamless infinite scroll -->
+      <div class="slide-track" id="slideTrack">
+        <div class="slide-list">
+          <!-- Replace / add logos here (first set) -->
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.pinimg.com/1200x/27/b2/3d/27b23daa02c7d8d7f8658b026abdab5f.jpg" alt="SKF" class="client-logo"></div>
+            <p class="client-name">SKF</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/QuGEYMD.png" alt="YUKEN" class="client-logo"></div>
+            <p class="client-name">YUKEN</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/sdIAU9K.jpg" alt="FESTO" class="client-logo"></div>
+            <p class="client-name">FESTO</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/G9Rqj8H.png" alt="CROMWELL" class="client-logo"></div>
+            <p class="client-name">CROMWELL</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/c29ngK5.png" alt="AIRTOP" class="client-logo"></div>
+            <p class="client-name">AIRTOP Pneumatic</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/XLVy5Dt.png" alt="BUNDOR" class="client-logo"></div>
+            <p class="client-name">BUNDOR</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/zi7EBM3.png" alt="PARKER" class="client-logo"></div>
+            <p class="client-name">PARKER</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/dLV4iJK.png" alt="SEMPERIT" class="client-logo"></div>
+            <p class="client-name">SEMPERIT</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/Sj0D2F7.png" alt="IMI NORGREN" class="client-logo"></div>
+            <p class="client-name">IMI NORGREN</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/C7I48i2.png" alt="SIEMENS" class="client-logo"></div>
+            <p class="client-name">SIEMENS</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/EwrDIgm.png" alt="MITSUBISHI" class="client-logo"></div>
+            <p class="client-name">MITSUBISHI</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/P03Zbnf.jpg" alt="SCHNEIDER" class="client-logo"></div>
+            <p class="client-name">SCHNEIDER</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://imgur.com/7rAB2FH.png" alt="PRESIDENT BOLT" class="client-logo"></div>
+            <p class="client-name">PRESIDENT BOLT</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://imgur.com/cms3VPt.png" alt="PRESIDENT BOLT" class="client-logo"></div>
+            <p class="client-name">PRESIDENT BOLT</p>
+          </div>
         </div>
 
-        <div class="client-section fade-in" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
-            <div class="conveyor-belt">
-                <!-- Duplicate clients for seamless loop -->
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://i.pinimg.com/1200x/27/b2/3d/27b23daa02c7d8d7f8658b026abdab5f.jpg" alt="SKF" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">SKF</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/QuGEYMD.png" alt="YUKEN" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">YUKEN</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/sdIAU9K.jpg" alt="FESTO" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">FESTO</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/G9Rqj8H.png" alt="CROMWELL" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">CROMWELL</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/c29ngK5.png" alt="AIRTOP Pnematic" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">AIRTOP Pnematic</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/XLVy5Dt.png" alt="BUNDOR" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">BUNDOR</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/zi7EBM3.png" alt="PARKER" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">PARKER</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/dLV4iJK.png" alt="SEMPERIT" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">SEMPERIT</p>
-                </div>
-                
-                <!-- Duplicate for seamless loop -->
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/Sj0D2F7.png" alt="IMI NORGREN" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">IMI NORGREN</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/C7I48i2.png" alt="SIEMENS" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">SIEMENS</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/EwrDIgm.png" alt="MITSUBISHI" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">MITSUBISHI</p>
-                </div>
-                
-                <div class="client-item">
-                    <div class="client-logo-container" style="background-color: white; border: 2px solid rgba(255, 255, 255, 0.8);">
-                        <img src="https://imgur.com/P03Zbnf.jpg" alt="SCHNEIDER" class="client-logo">
-                    </div>
-                    <p class="client-name" style="color: white; font-weight: 600;">SCHNEIDER</p>
-                </div>
-            </div>
+        <!-- Duplicate set for seamless animation -->
+        <div class="slide-list" aria-hidden="true">
+          <!-- Duplicate content: keep exactly the same order as the first set -->
+          <!-- (Easier: copy-paste the block above into here) -->
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.pinimg.com/1200x/27/b2/3d/27b23daa02c7d8d7f8658b026abdab5f.jpg" alt="SKF" class="client-logo"></div>
+            <p class="client-name">SKF</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/QuGEYMD.png" alt="YUKEN" class="client-logo"></div>
+            <p class="client-name">YUKEN</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/sdIAU9K.jpg" alt="FESTO" class="client-logo"></div>
+            <p class="client-name">FESTO</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/G9Rqj8H.png" alt="CROMWELL" class="client-logo"></div>
+            <p class="client-name">CROMWELL</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/c29ngK5.png" alt="AIRTOP" class="client-logo"></div>
+            <p class="client-name">AIRTOP Pneumatic</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/XLVy5Dt.png" alt="BUNDOR" class="client-logo"></div>
+            <p class="client-name">BUNDOR</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/zi7EBM3.png" alt="PARKER" class="client-logo"></div>
+            <p class="client-name">PARKER</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/dLV4iJK.png" alt="SEMPERIT" class="client-logo"></div>
+            <p class="client-name">SEMPERIT</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/Sj0D2F7.png" alt="IMI NORGREN" class="client-logo"></div>
+            <p class="client-name">IMI NORGREN</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/C7I48i2.png" alt="SIEMENS" class="client-logo"></div>
+            <p class="client-name">SIEMENS</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/EwrDIgm.png" alt="MITSUBISHI" class="client-logo"></div>
+            <p class="client-name">MITSUBISHI</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://i.imgur.com/P03Zbnf.jpg" alt="SCHNEIDER" class="client-logo"></div>
+            <p class="client-name">SCHNEIDER</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://imgur.com/7rAB2FH.png" alt="PRESIDENT BOLT" class="client-logo"></div>
+            <p class="client-name">PRESIDENT BOLT</p>
+          </div>
+          <div class="client-item">
+            <div class="client-logo-container"><img src="https://imgur.com/cms3VPt.png" alt="PRESIDENT BOLT" class="client-logo"></div>
+            <p class="client-name">PRESIDENT BOLT</p>
+          </div>
         </div>
-        
-        <p class="text-center mt-4 fade-in" style="color: rgba(255, 255, 255, 0.7);">Hover to pause the animation</p>
+      </div>
     </div>
+  </div>
 </section>
 
     <!-- CTA Section -->
@@ -1659,6 +1718,36 @@
                 }
             );
         });
+
+
+         // JS: Pause on hover (desktop) and on touch (mobile). Also ensures animation restarts cleanly.
+  (function () {
+    const slideTrack = document.getElementById('slideTrack');
+    if (!slideTrack) return;
+
+    // When user hovers with mouse -> pause
+    slideTrack.addEventListener('mouseenter', () => slideTrack.classList.add('paused'));
+    slideTrack.addEventListener('mouseleave', () => slideTrack.classList.remove('paused'));
+
+    // For touch devices: toggle pause on touchstart, resume on touchend
+    let touchTimer = null;
+    slideTrack.addEventListener('touchstart', (e) => {
+      slideTrack.classList.add('paused');
+      // stop propagation so body scrolling still possible; user can tap to pause
+      e.stopPropagation();
+      if (touchTimer) clearTimeout(touchTimer);
+    }, { passive: true });
+
+    slideTrack.addEventListener('touchend', () => {
+      // resume shortly after touch ends
+      if (touchTimer) clearTimeout(touchTimer);
+      touchTimer = setTimeout(() => slideTrack.classList.remove('paused'), 600);
+    });
+
+    // Make sure the track width is computed correctly: set animationTiming by CSS variable
+    // (No heavy layout JS so it's lightweight.)
+  })();
+  
     </script>
 </body>
 </html>
