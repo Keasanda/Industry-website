@@ -29,7 +29,7 @@
             box-sizing: border-box;
         }
 
-        /* New Navbar Styles (from index.html) */
+        /* Updated Navbar Styles (from products.html) */
         .nav {
             width: 100%;
             height: 65px;
@@ -68,6 +68,8 @@
             color: #fff;
             font-size: 2.5rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
         }
 
         .nav.scrolled div.logo a {
@@ -76,6 +78,26 @@
 
         .nav div.logo a:hover {
             color: var(--accent-color);
+        }
+
+        /* Logo Image Styles (from products.html) */
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            object-fit: cover;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled .logo-image {
+            border-color: #000;
+        }
+
+        .nav div.logo a:hover .logo-image {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
         }
 
         .nav div.main_list {
@@ -190,6 +212,17 @@
             
             .nav.scrolled div.main_list ul li a {
                 color: #000;
+            }
+
+            /* Mobile logo adjustments (from products.html) */
+            .logo-image {
+                width: 60px;
+                height: 60px;
+                margin-right: 5px;
+            }
+            
+            .nav div.logo a {
+                font-size: 2rem;
             }
         }
 
@@ -812,11 +845,13 @@
     </style>
 </head>
 <body>
-    <!-- New Navigation (from index.html) -->
+    <!-- Updated Navigation (from products.html) -->
     <nav class="nav">
         <div class="container">
             <div class="logo">
-                <a href="index.html">Blaqink </a>
+                <a href="index.html">
+                    <img src="https://imgur.com/vn0XRft.png" alt="Blaqink Logo" class="logo-image">
+                </a>
             </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
